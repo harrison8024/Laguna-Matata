@@ -1,52 +1,24 @@
-# C3.18_hackathon2
+# Laugna Matata 
 
-Hackathon project involving the combination of different data sources into an application or game
+Laguna beachfront finder - Find address, weather, pictures, ratings, restaurants, and hotels around your favorite beach. 
 
-### Requirements
-- Combine at least 3 **external** resources via AJAX requests and present their information in an application
-- Must be documented loosely on JSDOC standards
-- Must be issue-managed via meistertask 
-  - share the meistertask with daniel.paschal@learningfuze.com
-  - name your project 3.18 Team [your team number] Hackathon
+## Idea
+
+Originally a Hackathon project that was built to fit the goal of utilizing mutilple APIs in an application, then made it into a responsive and better UX/UI.
+
+### Built With
+- Javascript
+- HTML5
+- CSS3
+- JQuery
+- AJAX
+- Google APIs
+- Yelp API
+- Dark Sky Weather API
   
-### Additional requirement to be announced : Tuesday @ 5pm
-
-
-### Judging Criteria
-- **Appeal** : is it visually appealing / well put together
-- **Code Quality** : is the code properly formatted, are variables and functions well defined and documented
-- **Presentation** : How well is it presented during the unveiling session
-- **Task / Issue Management** : How well was the development process documented / controlled.  Were there well-defined issues, milestones, and project management
-- **Innovative / Transformative** : Did the project do something new and exciting?  Was it bold and tried to do things that haven't been done much.  Did it combine the data sources together in a way that was more useful than either source by itself
-- **Ease of Use / Understanding** : Was it easy to use the application / game, or if it was more complex, was the application or game able to provide you with tutorials or instructions that made understanding it a breeze.
-
-
-### Teams
-- Team 1
-  - "Bora"
-  - "Brett"
-  - "Hanh"
-  - "Omer"
-  - "Alia"
-
-- Team 2
-  - "Andrew"
-  - "Sam"
-  - "Jean Paul"
-  - "Dona"
-  - "Harrison"
-
-- Team 3
-  - "Dylan"
-  - "Katy"
-  - "Keith"
-  - "Sasan"
-
-- Team 4
-  - "Christina"
-  - "Daniel"
-  - "Corey"
-  - "Mark"
-  
-### Deadline: 
-- 6:00pm Wednesday, 18 , 2018
+### Original team member
+- Harrison Chen
+- Andrew Harrington
+- Samantha Skarvan
+- Dona Anda
+- JeanPaul Olukemi
