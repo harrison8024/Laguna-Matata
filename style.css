@@ -88,7 +88,7 @@ footer{
 }
 
 .info-1 {
-    height: 25%;
+    height: 13vw;
     width: 100%;
 }
 
@@ -110,8 +110,8 @@ footer{
     height: 40%;
     width: 40%;
     position: absolute;
-    top: 5%;
-    right: 5%;
+    top: 1%;
+    right: 1%;
     background-color: #338C81;
     background-size: contain;
     background-repeat: no-repeat;
@@ -155,9 +155,8 @@ footer{
     height: 35%;
     width: 25%;
     position: absolute;
-    bottom: 1%;
+    bottom: 5%;
     left: 1%;
-    margin: auto auto 5vh 5vw;
     background-color: #338C81;
     opacity: 0.8;
     padding: 10px;
@@ -194,9 +193,17 @@ footer{
     width: 50%;
     height: 50%;
 }
-
+.yelpStars{
+    width: 11vw;
+    margin: 2%;
+}
+.yelpSelected{
+    border: white outset 0.1vw;
+    background-color: white
+}
 .yelp {
     color: black;
+    font-size: 1.7vw;
     text-align: center;
     height:100%;
     width:100%;
@@ -209,8 +216,15 @@ footer{
     margin: 0;
 }
 .yelp > p:first-child{
-    font-size: 1.5rem;
+    font-size: 1.7vw;
     font-family: 'Pacifico', cursive;
+}
+.storeType{
+    font-size: 3vw;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: burlywood;
 }
 
 .rounded-border {
@@ -261,4 +275,3 @@ footer{
         font-size: 300%;
     }
 }
-
