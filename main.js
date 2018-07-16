@@ -106,10 +106,10 @@ function initializeApp() {
 function getWeatherFomDarkSky(){
     var ajaxConfig = {
         'dataType': 'jsonp',
-        'url': ' https://api.darksky.net/forecast/d89a8f31d58a881ce47cfc2ef67596a1/33.51941, -117.76292',
+        'url': ' https://api.darksky.net/forecast/7c03619a4eb88722f133d0a7878f1503/33.51941, -117.76292',
         'method': 'GET',
         success: function (result) {
-            let currentTemp = `${Math.ceil(result.currently.temperature)} F`;
+            let currentTemp = `${Math.ceil(result.currently.temperature)} ${String.fromCharCode(176)}F`;
             let currentWeatherSummary = `Currently: ${result.currently.summary}`;
             let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
             let humidity = `Humidity: ${((result.currently.humidity)*100)}%`;
@@ -141,7 +141,7 @@ function convertTimeToPacificDaylight(time){
 }
 
 function appendWeatherInfoToDom (obj){
-    let currentTemp = $("<p>").text(obj.currentTemp);
+    let currentTemp = $("<div>").text(obj.currentTemp);
     let currentWeatherSummary = $("<p>").text(obj.currentWeatherSummary);
     let feelsLikeTemp =  $("<p>").text(obj.feelsLikeTemp);
     let humidity =  $("<p>").text(obj.humidity);
@@ -150,9 +150,14 @@ function appendWeatherInfoToDom (obj){
     let dailyWeatherSummary = $("<p>").text(obj.dailyWeatherSummary);
     let sunriseTime = $("<p>").text(obj.sunriseTime);
     let sunsetTime = $("<p>").text(obj.sunsetTime);
-    let currentDiv = $("<div>");
-    currentDiv.addClass('current').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyWeatherSummary);
-    $('.weather').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity,  dailyLowTemp, dailyHighTemp, sunriseTime, sunsetTime);
+    let divOne = $("<div>");
+    let divTwo = $("<div>");
+    let divThree = $("<div>");
+    currentTemp.addClass("weather-temp");
+    divOne.addClass("weather-other").append(currentWeatherSummary, feelsLikeTemp, humidity);
+    divTwo.addClass("weather-other").append(dailyLowTemp, dailyHighTemp, sunriseTime);
+    divThree.addClass("weather-other").append(sunsetTime, dailyWeatherSummary);
+    $('.weather').append(currentTemp, divOne, divTwo, divThree);
 }
 
 function initMap() {

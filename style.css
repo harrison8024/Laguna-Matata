@@ -1,13 +1,12 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 body {
     height: 100vh;
     width: 100vw;
-    background-color: #275D87;
     margin: 0;
     color: #B6C3CB;
 }
@@ -62,6 +61,7 @@ footer{
     position: absolute;
     bottom: 0;
 }
+
 .info-container-wrapper{
     overflow: hidden;
     height: 83vh;
@@ -70,6 +70,7 @@ footer{
     display: inline-block;
     margin-bottom: 1.5%;
 }
+
 .info-container {
     display: inline-block;
     height: 100%;
@@ -144,15 +145,28 @@ footer{
 }
 
 .weather {
-    height: 35%;
-    width: 25%;
-    padding: 10px;
+    height: 100%;
+    width: 800%;
     text-align: center;
     line-height: 3vh;
+    padding: 1%;
+    box-sizing: border-box;
 }
 
 .weather > p, .reviewText, .yelp {
     font-family: Arial, sans-serif;
+}
+
+.weather-temp{
+ font-size: 300%;
+ height:100%;
+ display: inline-block;
+}
+
+.weather-other{
+    height:100%;
+    display: inline-block;
+    margin:1%;
 }
 
 .high-low{
@@ -221,7 +235,6 @@ footer{
     color: green;
 }
 
-
 .content {
     position: absolute;
     left: 2%;
@@ -240,12 +253,6 @@ footer{
 }
 
  @media only screen and (max-width: 600px) {
-     .current > p, .sunrise-sunset > p, .high-low > p, .weather > p, .reviewText {
-         margin: 1%;
-         padding: 1%;
-         height: 10%;
-         font-size: 50%;
-     }
      .weather > p:first-child {
          font-size: 125%;
          height: 20%;
