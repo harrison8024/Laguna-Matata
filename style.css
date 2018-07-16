@@ -15,7 +15,6 @@ body {
 .logo-container{
     width: 50%;
     height: 50%;
-    border-radius: 50%;
 }
 #logo{ 
     width: 100%;
@@ -24,18 +23,15 @@ body {
     margin-left: 1vw;
 }
 .text-title{
-    text-align: right;
-    color: floralwhite;
+    color: skyblue;
     font-weight: 800;
-    letter-spacing: 1rem;
-    text-shadow: 2px 2px black;
-    margin-right: 2vw;
     font-size: 5vh;
-    font-family: 'Pacifico', cursive;
+    font-family: Courier, Arial, sans-serif
 }
 .header-container{
     display: inline-flex;
     width: 100%;
+    height: 100%;
 }
 header {
     display: flex;
@@ -45,6 +41,7 @@ header {
     align-items: flex-start;
     width: 100vw;
     box-sizing: border-box;
+    background-color: white;
 }
 
 .logo-text{
@@ -64,21 +61,19 @@ footer{
     z-index: 2;
     position: absolute;
     bottom: 0;
-    background-color: #275D87;
 }
 .info-container-wrapper{
     overflow: hidden;
     height: 83vh;
     width: 25vw;
+    border: 1px black solid;
     display: inline-block;
-    border-radius: 5%;
     margin-bottom: 1.5%;
 }
 .info-container {
     display: inline-block;
     height: 100%;
     width: 100%;
-    background-color: #B6C3CB;
     box-sizing: border-box;
     opacity: 0.8;
     overflow-y: auto;
@@ -112,11 +107,8 @@ footer{
     position: absolute;
     top: 1%;
     right: 1%;
-    background-color: #338C81;
     background-size: contain;
     background-repeat: no-repeat;
-    box-shadow: 5px 5px 10px;
-    opacity: 0.9;
 }
 
 .image {
@@ -154,13 +146,7 @@ footer{
 .weather {
     height: 35%;
     width: 25%;
-    position: absolute;
-    bottom: 5%;
-    left: 1%;
-    background-color: #338C81;
-    opacity: 0.8;
     padding: 10px;
-    box-shadow: 1px 1px 10px;
     text-align: center;
     line-height: 3vh;
 }
@@ -264,9 +250,17 @@ footer{
          font-size: 125%;
          height: 20%;
      }
+     #map-container{
+         height: 30%;
+         width: 80%;
+     }
+     .info-container-wrapper{
+         top: 300px;
+     }
+
  }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
     .current > p, .sunrise-sunset > p, .high-low > p, .weather > p, .reviewText {
         font-size: 75%;
         margin: 2%;
@@ -274,4 +268,4 @@ footer{
     .weather > p:first-child {
         font-size: 300%;
     }
-}
+} */

@@ -428,24 +428,6 @@ function appendYelpType(storeType) {
     var type = $("<div>").attr("class", "storeType").text(storeType);
     $('.info-1').append(type);
 }
-/*
-function append_Yelp_Data_To_Dom( obj ){
-    $(".info-1").empty();
-    var storeType = ["bar", "coffee", "food", "rental", "hotel"];
-    for (var categoryIndex = 0; categoryIndex < storeType.length; categoryIndex++) {
-        for (var i = 0; i < obj[storeType[categoryIndex]].length; i++) {
-            let name = $("<p>").text(obj[storeType[categoryIndex]][i].businesses_Name);
-            let image = $("<img/>").attr('src', obj[storeType[categoryIndex]][i].businesses_Img);
-            image.addClass('yelp_img');
-            let rating =  $("<p>").text("Rating " + obj[storeType[categoryIndex]][i].businesses_Rating);
-            let reviewCount =  $("<p>").text("reviews "+ obj[storeType[categoryIndex]][i].businesses_Review_count);
-            let yelp_data_content = $("<div>");
-            yelp_data_content.addClass('yelp').append(name,image,rating,reviewCount);
-            $('.info-1').append(yelp_data_content);
-        }
-    }
-}
-*/
 
 function append_Yelp_Data_To_Dom( storeObject,){
     let name = $("<p>").text(storeObject.businesses_Name);
