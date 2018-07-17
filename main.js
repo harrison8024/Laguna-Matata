@@ -155,6 +155,7 @@ function appendWeatherInfoToDom (obj){
     let divTwo = $("<div>");
     let divThree = $("<div>");
     currentTemp.addClass("weather-temp");
+    $(".marquee-content").append(feelsLikeTemp, humidity, dailyLowTemp, dailyHighTemp, sunriseTime, sunsetTime, dailyWeatherSummary);
     divOne.addClass("weather-other").append(feelsLikeTemp, humidity);
     divTwo.addClass("weather-other").append(dailyLowTemp, dailyHighTemp, sunriseTime);
     divThree.addClass("weather-other").append(sunsetTime, dailyWeatherSummary);
