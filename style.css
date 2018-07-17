@@ -8,7 +8,6 @@ body {
     height: 100vh;
     width: 100vw;
     margin: 0;
-    color: #B6C3CB;
 }
 
 .logo-container{
@@ -22,10 +21,8 @@ body {
     margin-left: 1vw;
 }
 .text-title{
-    color: skyblue;
     font-weight: 800;
     font-size: 5vh;
-    font-family: Courier, Arial, sans-serif
 }
 .header-container{
     display: inline-flex;
@@ -253,10 +250,6 @@ footer{
 }
 
  @media only screen and (max-width: 600px) {
-     .weather > p:first-child {
-         font-size: 125%;
-         height: 20%;
-     }
      #map-container{
          height: 30%;
          width: 80%;
