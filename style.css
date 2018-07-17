@@ -166,6 +166,10 @@ footer{
     margin:1%;
 }
 
+#weather-icon{
+    display: inline-block;
+}
+
 .high-low{
     right: 0;
 }

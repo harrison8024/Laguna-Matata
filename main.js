@@ -101,6 +101,9 @@ var yelpStars = {
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
+    var skycons = new Skycons({color: "gray"});
+    skycons.add("weather-icon", Skycons.RAIN);
+    skycons.play();
 }
 
 function getWeatherFomDarkSky(){
