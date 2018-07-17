@@ -110,7 +110,7 @@ function getWeatherFomDarkSky(){
         'method': 'GET',
         success: function (result) {
             let currentTemp = `${Math.ceil(result.currently.temperature)} ${String.fromCharCode(176)}F`;
-            let currentWeatherSummary = `Currently: ${result.currently.summary}`;
+            let currentWeatherIcon = result.currently.icon;
             let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
             let humidity = `Humidity: ${((result.currently.humidity)*100)}%`;
             let dailyHighTemp = `High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
@@ -118,7 +118,7 @@ function getWeatherFomDarkSky(){
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
-            let localWeatherObject = {currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, dailyWeatherSummary, sunriseTime, sunsetTime};
+            let localWeatherObject = {currentTemp, currentWeatherIcon, feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, dailyWeatherSummary, sunriseTime, sunsetTime};
             appendWeatherInfoToDom(localWeatherObject);
         },
         error: function(){
@@ -142,7 +142,8 @@ function convertTimeToPacificDaylight(time){
 
 function appendWeatherInfoToDom (obj){
     let currentTemp = $("<div>").text(obj.currentTemp);
-    let currentWeatherSummary = $("<p>").text(obj.currentWeatherSummary);
+    let currentWeatherIcon = $("<canvas>").attr({"id": "weather-icon","height": 50, "width": 50});
+    currentTemp.prepend(currentWeatherIcon);
     let feelsLikeTemp =  $("<p>").text(obj.feelsLikeTemp);
     let humidity =  $("<p>").text(obj.humidity);
     let dailyHighTemp =  $("<p>").text(obj.dailyHighTemp);
@@ -154,10 +155,38 @@ function appendWeatherInfoToDom (obj){
     let divTwo = $("<div>");
     let divThree = $("<div>");
     currentTemp.addClass("weather-temp");
-    divOne.addClass("weather-other").append(currentWeatherSummary, feelsLikeTemp, humidity);
+    divOne.addClass("weather-other").append(feelsLikeTemp, humidity);
     divTwo.addClass("weather-other").append(dailyLowTemp, dailyHighTemp, sunriseTime);
     divThree.addClass("weather-other").append(sunsetTime, dailyWeatherSummary);
     $('.weather').append(currentTemp, divOne, divTwo, divThree);
+    chooseWeatherIcon(obj.currentWeatherIcon);
+}
+
+function chooseWeatherIcon(icon){
+    let skycons = new Skycons({color: "black"});
+    switch(icon){
+        case "clear-day":
+            skycons.add("weather-icon", Skycons.CLEAR_DAY);
+        case "clear-night":
+            skycons.add("weather-icon", Skycons.CLEAR_NIGHT);
+        case "partly-cloudy-day":
+            skycons.add("weather-icon", Skycons.PARTLY_CLOUDY_DAY);
+        case "partly-cloudy-night":
+            skycons.add("weather-icon", Skycons.PARTLY_CLOUDY_NIGHT);
+        case "cloudy":
+            skycons.add("weather-icon", Skycons.CLOUDY);
+        case "rain":
+            skycons.add("weather-icon", Skycons.RAIN);
+        case "sleet":
+            skycons.add("weather-icon", Skycons.SLEET);
+        case "snow":
+            skycons.add("weather-icon", Skycons.SNOW);
+        case "wind":
+            skycons.add("weather-icon", Skycons.WIND);
+        case "fog":
+            skycons.add("weather-icon", Skycons.FOG);
+    }
+    skycons.play();
 }
 
 function initMap() {
