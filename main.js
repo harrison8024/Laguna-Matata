@@ -151,15 +151,12 @@ function appendWeatherInfoToDom (obj){
     let dailyWeatherSummary = $("<p>").text(obj.dailyWeatherSummary);
     let sunriseTime = $("<p>").text(obj.sunriseTime);
     let sunsetTime = $("<p>").text(obj.sunsetTime);
-    let divOne = $("<div>");
-    let divTwo = $("<div>");
-    let divThree = $("<div>");
     currentTemp.addClass("weather-temp");
-    divOne.addClass("weather-other").append(feelsLikeTemp, humidity);
-    divTwo.addClass("weather-other").append(dailyLowTemp, dailyHighTemp, sunriseTime);
-    divThree.addClass("weather-other").append(sunsetTime, dailyWeatherSummary);
-    $('.weather').append(currentTemp, divOne, divTwo, divThree);
+    $(".weather").append(currentTemp);
     chooseWeatherIcon(obj.currentWeatherIcon);
+    $(".marquee-inner-1").append(feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, sunriseTime, sunsetTime, dailyWeatherSummary);
+    $(".marquee-inner-2").append(feelsLikeTemp.clone(), humidity.clone(), dailyHighTemp.clone(), dailyLowTemp.clone(), sunriseTime.clone(), sunsetTime.clone(), dailyWeatherSummary.clone());
+
 }
 
 function chooseWeatherIcon(icon){
@@ -348,11 +345,6 @@ function dropMarker() {
             label: "",
             animation: google.maps.Animation.DROP,
         });
-        /*
-        var storeType = ["bar", "coffee", "food", "rental", "hotel"];
-        for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
-            yelpRatingandPictures(beachesArray[latlngArrayIndex], storeType[typeIndex]);
-        }*/
 
         clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
         markerArray.push(marker)
