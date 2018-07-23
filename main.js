@@ -101,6 +101,7 @@ var yelpStars = {
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
+    addClickHandlerToStoreIcon();
 }
 
 function getWeatherFomDarkSky(){
@@ -497,3 +498,12 @@ function removeMarkers(YelpMarkers){
     }
 }
 
+function addClickHandlerToStoreIcon(){
+    $(".store-icon").bind("click", storeIconEventListener);
+}
+
+function storeIconEventListener(){
+    let type = $(this).attr("type");
+    $(".info-content").addClass("hidden");
+    $("."+type).removeClass("hidden");
+}

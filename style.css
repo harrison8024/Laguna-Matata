@@ -219,9 +219,7 @@ header {
     border-bottom: .2em dotted #6a6969;
 }
 
-.yelp >p,
-.Name_title >p,
-.price_title >p{
+.yelp >p, .Name_title >p, .price_title >p {
     margin: 0;
 }
 .yelp > p:first-child{
