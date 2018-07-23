@@ -145,7 +145,7 @@ header {
 }
 .marquee-content{
     display: block;
-    width: 186%;  
+    width: 350%;  
     position: absolute;
     overflow: hidden;
   
