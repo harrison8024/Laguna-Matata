@@ -4,6 +4,10 @@
     font-family: 'Lato', sans-serif;
 }
 
+.hidden{
+    display: none;
+}
+
 .text-title{
     font-weight: 800;
     font-size: 5vh;
@@ -38,22 +42,38 @@ header {
     overflow: hidden;
     height: 100%;
     width: 24%;
-    border: 1px solid black;
+}
+
+.store-icon-container{
+    height:10%;
+    width:100%;
+    display: inline-flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.store-icon{
+    width:25%;
+    height:100%;
+    box-sizing: border-box;
 }
 
 .info-container {
-    height: 100%;
+    height: 90%;
     width: 100%;
     box-sizing: border-box;
     opacity: 0.8;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1%;
+    border: 1px solid black;
+    position: relative;
 
 }
 
-.info-1 {
-    height: 13vw;
+.info-content {
+    position: absolute;
+    height: 100%;
     width: 100%;
 }
 
@@ -176,20 +196,6 @@ header {
     right: 0;
 }
 
-.yelp_container {
-    height: 25%;
-    width: 25%;
-    position: absolute;
-    bottom: 1%;
-    left: 1%;
-    margin: auto auto 5vh 5vw;
-    background-color: #b65824;
-}
-.yelp_container>div {
-    width: 9vh;
-    height: 9vw;
-    border: 1px solid black;
-}
 .yelp_img {
     float:left;
     object-fit: contain;
@@ -208,7 +214,7 @@ header {
     color: black;
     font-size: 1.7vw;
     text-align: center;
-    height:100%;
+    height:25%;
     width:100%;
     border-bottom: .2em dotted #6a6969;
 }
@@ -220,13 +226,6 @@ header {
 }
 .yelp > p:first-child{
     font-size: 1.7vw;
-}
-.storeType{
-    font-size: 3vw;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    background-color: burlywood;
 }
 
 .rounded-border {

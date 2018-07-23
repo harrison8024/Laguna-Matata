@@ -353,9 +353,9 @@ function dropMarker() {
 }
 
 function clickHandler(markerClicked, beachObj, index){
-    var storeType = ["bar", "coffee", "food", "rental", "hotel"];
+    var storeType = ["bar", "coffee", "food", "hotel"];
     markerClicked.addListener('click', function() {
-        $(".info-1").empty();
+        $(".info-content").empty();
         for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
              yelpRatingandPictures(beachObj, storeType[typeIndex]);
         }
@@ -425,9 +425,8 @@ function yelpRatingandPictures(beachObject, type) {
 function yelpObjectConstructor(yelpData, type, beach){
     var storeObjectArray = [];
     if(yelpData.businesses.length ===0){
+        $("."+type).text("No results Found...");
         return
-    }else{
-        appendYelpType(type);
     }
     for (var storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
         let businesses_Name = yelpData.businesses[storeIndex].name;
@@ -445,28 +444,22 @@ function yelpObjectConstructor(yelpData, type, beach){
             businesses_Review_count
         };
         storeObjectArray.push(storeObject);
-        append_Yelp_Data_To_Dom(storeObject);
-        // plot_Yelp_Data_On_Map(storeObject);
+        append_Yelp_Data_To_Dom(storeObject, type);
     }
     beach[type] = storeObjectArray;
 }
-function appendYelpType(storeType) {
-    var type = $("<div>").attr("class", "storeType").text(storeType);
-    $('.info-1').append(type);
-}
 
-function append_Yelp_Data_To_Dom( storeObject,){
+function append_Yelp_Data_To_Dom( storeObject, type){
     let name = $("<p>").text(storeObject.businesses_Name);
     let image = $("<img>").attr('src', storeObject.businesses_Img);
     image.addClass('yelp_img');
     let ratingNumber = storeObject.businesses_Rating.toString();
     let yelp_star = $("<img>").attr("src", yelpStars[ratingNumber]);
     yelp_star.addClass("yelpStars");
-    // let rating =  $("<p>").text("Rating " + storeObject.businesses_Rating);
     let reviewCount =  $("<p>").text( storeObject.businesses_Review_count + " reviews");
     let yelp_data_content = $("<div>");
     yelp_data_content.addClass('yelp').append(name,image,yelp_star,reviewCount);
-    $('.info-1').append(yelp_data_content);
+    $("." + type).append(yelp_data_content);
     let yelpMarker = plot_Yelp_Data_On_Map(storeObject);
     yelp_data_content.on("click", function(){
         $(".yelpSelected").removeClass("yelpSelected");
@@ -481,7 +474,7 @@ function append_Yelp_Data_To_Dom( storeObject,){
 }
 
 function scrolling() {
-    $('.info-1').scrollTop(300);
+    $('.info-content').scrollTop(300);
 }
 
 function plot_Yelp_Data_On_Map(yelpPlace){
