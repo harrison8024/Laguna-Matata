@@ -4,22 +4,6 @@
     font-family: 'Lato', sans-serif;
 }
 
-body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-}
-
-.logo-container{
-    width: 50%;
-    height: 50%;
-}
-#logo{ 
-    width: 100%;
-    height: 100%;
-    padding: 11px;
-    margin-left: 1vw;
-}
 .text-title{
     font-weight: 800;
     font-size: 5vh;
@@ -50,26 +34,14 @@ header {
     align-content: center;
 }
 
-footer{
-    height: 2.5%;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 2;
-    position: absolute;
-    bottom: 0;
-}
-
 .info-container-wrapper{
     overflow: hidden;
-    height: 83vh;
-    width: 25vw;
-    border: 1px black solid;
-    display: inline-block;
-    margin-bottom: 1.5%;
+    height: 100%;
+    width: 24%;
+    border: 1px solid black;
 }
 
 .info-container {
-    display: inline-block;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -87,9 +59,8 @@ footer{
 
 #wrapper {
     position: relative;
-    display: inline-block;
-    height: 85vh;
-    width: 70vw;
+    height: 100%;
+    width: 75%;
     box-sizing: border-box;
 }
 
@@ -133,7 +104,6 @@ footer{
 .beachName {
     font-size: 150%;
     text-align: center;
-    font-family: 'Pacifico', cursive;
 }
 
 .reviewText .reviewRating{
@@ -160,7 +130,7 @@ footer{
 }
 
 .marquee {
-    height: 50px;
+    height: 50%;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -168,6 +138,7 @@ footer{
   }
   
 .marquee-container{
+    height: 5vh;
     margin-left: 1%;
     margin-right: 1%;
     box-sizing: border-box;
@@ -249,7 +220,6 @@ footer{
 }
 .yelp > p:first-child{
     font-size: 1.7vw;
-    font-family: 'Pacifico', cursive;
 }
 .storeType{
     font-size: 3vw;
@@ -268,9 +238,12 @@ footer{
 }
 
 .content {
-    position: absolute;
-    left: 2%;
-    bottom: 0
+    height: 83vh;
+    width: 100vw;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 1%;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar{
