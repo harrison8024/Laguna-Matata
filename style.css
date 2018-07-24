@@ -145,23 +145,20 @@ img {
 }
 
 .weather {
+    width:30%;
     height: 100%;
     text-align: center;
-    line-height: 3vh;
     padding: 1%;
     box-sizing: border-box;
 }
 
 .weather-temp{
-    font-size: 250%;
-    height:100%;
-    width:100%;
-    display: inline-block;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
 }
 
-#weather-icon{
-    display: inline-block;
-}
+#weather-icon{}
 
 .marquee {
     background-color: cornflowerblue;

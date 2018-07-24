@@ -143,9 +143,11 @@ function convertTimeToPacificDaylight(time){
 }
 
 function appendWeatherInfoToDom (obj){
-    let currentTemp = $("<div>").text(obj.currentTemp);
+    let currentTemp = $("<h1>").text(obj.currentTemp)
+    let currentWeatherDiv = $("<div>").addClass("weather-temp");
     let currentWeatherIcon = $("<canvas>").attr({"id": "weather-icon","height": 50, "width": 50});
-    currentTemp.prepend(currentWeatherIcon);
+    currentWeatherDiv.append(currentWeatherIcon);
+    currentWeatherDiv.append(currentTemp);
     let feelsLikeTemp =  $("<p>").text(obj.feelsLikeTemp);
     let humidity =  $("<p>").text(obj.humidity);
     let dailyHighTemp =  $("<p>").text(obj.dailyHighTemp);
@@ -153,8 +155,7 @@ function appendWeatherInfoToDom (obj){
     let dailyWeatherSummary = $("<p>").text(obj.dailyWeatherSummary);
     let sunriseTime = $("<p>").text(obj.sunriseTime);
     let sunsetTime = $("<p>").text(obj.sunsetTime);
-    currentTemp.addClass("weather-temp");
-    $(".weather").append(currentTemp);
+    $(".weather").append(currentWeatherDiv);
     chooseWeatherIcon(obj.currentWeatherIcon);
     $(".marquee-inner-1").append(feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, sunriseTime, sunsetTime, dailyWeatherSummary);
     $(".marquee-inner-2").append(feelsLikeTemp.clone(), humidity.clone(), dailyHighTemp.clone(), dailyLowTemp.clone(), sunriseTime.clone(), sunsetTime.clone(), dailyWeatherSummary.clone());
