@@ -46,6 +46,17 @@ header {
     overflow: hidden;
     height: 100%;
     width: 24%;
+    position:relative;
+}
+
+.beach-info{
+    position: absolute;
+    height:100%;
+    width:100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    background-color: lightgray;
+    opacity: 0.8;
 }
 
 .store-icon-container{
