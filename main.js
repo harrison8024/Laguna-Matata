@@ -2,9 +2,10 @@
 $(document).ready(initializeApp);
 
 var map;
+var storeIconOn = false;
 var markerArray = [];
 var beachesArray = [];
-let storeYelpMarkers = [];
+var storeYelpMarkers = [];
 var beachArray = [
     "Cameo Cove",
     "Emerald Bay",
@@ -101,6 +102,7 @@ var yelpStars = {
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
+    addClickHandlerToStoreIcon();
 }
 
 function getWeatherFomDarkSky(){
@@ -109,12 +111,12 @@ function getWeatherFomDarkSky(){
         'url': ' https://api.darksky.net/forecast/7c03619a4eb88722f133d0a7878f1503/33.51941, -117.76292',
         'method': 'GET',
         success: function (result) {
-            let currentTemp = `${Math.ceil(result.currently.temperature)} ${String.fromCharCode(176)}F`;
+            let currentTemp = `${Math.round(result.currently.temperature)} ${String.fromCharCode(176)}F`;
             let currentWeatherIcon = result.currently.icon;
-            let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
-            let humidity = `Humidity: ${((result.currently.humidity)*100)}%`;
-            let dailyHighTemp = `High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
-            let dailyLowTemp = `Low: ${Math.ceil(result.daily.data[0].temperatureMin)} F`;
+            let feelsLikeTemp = `Feels Like: ${Math.round(result.currently.apparentTemperature)} ${String.fromCharCode(176)}F`;
+            let humidity = `Humidity: ${Math.round(result.currently.humidity)*100}%`;
+            let dailyHighTemp = `High: ${Math.round(result.daily.data[0].temperatureMax)} ${String.fromCharCode(176)}F`;
+            let dailyLowTemp = `Low: ${Math.round(result.daily.data[0].temperatureMin)} ${String.fromCharCode(176)}F`;
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
@@ -346,16 +348,16 @@ function dropMarker() {
             animation: google.maps.Animation.DROP,
         });
 
-        clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+        beachClickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
         markerArray.push(marker)
 
     }
 }
 
-function clickHandler(markerClicked, beachObj, index){
-    var storeType = ["bar", "coffee", "food", "rental", "hotel"];
+function beachClickHandler(markerClicked, beachObj, index){
+    var storeType = ["bar", "coffee", "food", "hotel"];
     markerClicked.addListener('click', function() {
-        $(".info-1").empty();
+        $(".info-content").empty();
         for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
              yelpRatingandPictures(beachObj, storeType[typeIndex]);
         }
@@ -379,6 +381,7 @@ function clickHandler(markerClicked, beachObj, index){
         displayImage(beachObj);
         displayComment(beachObj);
         removeMarkers(storeYelpMarkers);
+        $(".food-icon").addClass("highlight");
     });
 }
 
@@ -425,9 +428,8 @@ function yelpRatingandPictures(beachObject, type) {
 function yelpObjectConstructor(yelpData, type, beach){
     var storeObjectArray = [];
     if(yelpData.businesses.length ===0){
+        $("."+type).text("No results Found...");
         return
-    }else{
-        appendYelpType(type);
     }
     for (var storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
         let businesses_Name = yelpData.businesses[storeIndex].name;
@@ -445,29 +447,25 @@ function yelpObjectConstructor(yelpData, type, beach){
             businesses_Review_count
         };
         storeObjectArray.push(storeObject);
-        append_Yelp_Data_To_Dom(storeObject);
-        // plot_Yelp_Data_On_Map(storeObject);
+        append_Yelp_Data_To_Dom(storeObject, type);
     }
     beach[type] = storeObjectArray;
 }
-function appendYelpType(storeType) {
-    var type = $("<div>").attr("class", "storeType").text(storeType);
-    $('.info-1').append(type);
-}
 
-function append_Yelp_Data_To_Dom( storeObject,){
-    let name = $("<p>").text(storeObject.businesses_Name);
+function append_Yelp_Data_To_Dom( storeObject, type){
     let image = $("<img>").attr('src', storeObject.businesses_Img);
     image.addClass('yelp_img');
+    let infoDiv = $("<div>").addClass("yelp-info");
+    let name = $("<p>").text(storeObject.businesses_Name);
     let ratingNumber = storeObject.businesses_Rating.toString();
     let yelp_star = $("<img>").attr("src", yelpStars[ratingNumber]);
     yelp_star.addClass("yelpStars");
-    // let rating =  $("<p>").text("Rating " + storeObject.businesses_Rating);
     let reviewCount =  $("<p>").text( storeObject.businesses_Review_count + " reviews");
+    infoDiv.append(name, yelp_star, reviewCount);
     let yelp_data_content = $("<div>");
-    yelp_data_content.addClass('yelp').append(name,image,yelp_star,reviewCount);
-    $('.info-1').append(yelp_data_content);
-    let yelpMarker = plot_Yelp_Data_On_Map(storeObject);
+    yelp_data_content.addClass('yelp').append(image, infoDiv);
+    $("." + type).append(yelp_data_content);
+    let yelpMarker = plot_Yelp_Data_On_Map(storeObject, type);
     yelp_data_content.on("click", function(){
         $(".yelpSelected").removeClass("yelpSelected");
         yelp_data_content.addClass("yelpSelected");
@@ -481,15 +479,41 @@ function append_Yelp_Data_To_Dom( storeObject,){
 }
 
 function scrolling() {
-    $('.info-1').scrollTop(300);
+    $('.info-content').scrollTop(300);
 }
 
-function plot_Yelp_Data_On_Map(yelpPlace){
+function plot_Yelp_Data_On_Map(yelpPlace, type){
+    let imgUrl;
+    switch (type) {
+        case "food":
+            imgUrl = "assets/Images/dish.svg"
+            break;
+        case "hotel":
+            imgUrl = "assets/Images/bed.svg"
+            break;
+        case "coffee":
+            imgUrl = "assets/Images/coffee.svg"
+            break;
+        case "bar":
+            imgUrl = "assets/Images/cocktail-shadow.svg"
+            break;
+    
+        default:
+            break;
+    }
+    let image = {
+        url: imgUrl,
+        size: new google.maps.Size(30, 30),
+        scaledSize: new google.maps.Size(30, 30),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0,32)
+    };
     let yelpMarker = new google.maps.Marker({
         position: {
             lat: yelpPlace.businesses_Coordinates.latitude,
             lng: yelpPlace.businesses_Coordinates.longitude
         },
+        icon: image,
         map: map,
         label: "",
         animation: google.maps.Animation.DROP,
@@ -504,3 +528,14 @@ function removeMarkers(YelpMarkers){
     }
 }
 
+function addClickHandlerToStoreIcon(){
+    $(".store-icon").bind("click", storeIconEventListener);
+}
+
+function storeIconEventListener(){
+    $(".store-icon").removeClass("highlight");
+    $(this).addClass("highlight");
+    let type = $(this).attr("type");
+    $(".info-content").addClass("hidden");
+    $("."+type).removeClass("hidden");
+}

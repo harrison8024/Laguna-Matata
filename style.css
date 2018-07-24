@@ -4,15 +4,26 @@
     font-family: 'Lato', sans-serif;
 }
 
+.hidden{
+    display: none;
+}
+
+.highlight{
+    border-bottom: black solid 5px;
+    box-sizing: border-box; 
+}
+
 .text-title{
     font-weight: 800;
     font-size: 5vh;
 }
+
 .header-container{
     display: inline-flex;
     width: 100%;
     height: 100%;
 }
+
 header {
     display: flex;
     flex-direction: row;
@@ -25,35 +36,47 @@ header {
 }
 
 .logo-text{
-    width: 67%;
+    width: 50%;
     height: 50%;
     float: left;
    
-}
-.img{
-    align-content: center;
 }
 
 .info-container-wrapper{
     overflow: hidden;
     height: 100%;
     width: 24%;
-    border: 1px solid black;
+}
+
+.store-icon-container{
+    width:100%;
+    display: inline-flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.store-icon{
+    width:20%;
+    height:auto;
+    box-sizing: border-box;
 }
 
 .info-container {
-    height: 100%;
+    height: 90%;
     width: 100%;
     box-sizing: border-box;
     opacity: 0.8;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1%;
+    border: 1px solid black;
+    position: relative;
 
 }
 
-.info-1 {
-    height: 13vw;
+.info-content {
+    position: absolute;
+    height: 100%;
     width: 100%;
 }
 
@@ -71,11 +94,11 @@ header {
 }
 
 .picture {
-    height: 40%;
-    width: 40%;
+    height: 30%;
+    width: 30%;
     position: absolute;
-    top: 1%;
-    right: 1%;
+    bottom: 30%;
+    left: 1%;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -120,9 +143,10 @@ header {
 }
 
 .weather-temp{
- font-size: 300%;
- height:100%;
- display: inline-block;
+    font-size: 250%;
+    height:100%;
+    width:100%;
+    display: inline-block;
 }
 
 #weather-icon{
@@ -130,7 +154,8 @@ header {
 }
 
 .marquee {
-    height: 50%;
+    background-color: cornflowerblue;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -144,15 +169,16 @@ header {
     box-sizing: border-box;
 }
 .marquee-content{
-    display: block;
-    width: 186%;  
+    width: 250%;  
     position: absolute;
     overflow: hidden;
+    padding:1%;
   
-    animation: marquee 50s linear infinite;
+    animation: marquee 10s linear infinite;
 }
   
-.marquee-inner1, .marquee-inner-2 {
+.marquee-inner-1, .marquee-inner-2 {
+    color: khaki;
     float:left;
     width: 50%;
 }
@@ -172,69 +198,37 @@ header {
     animation-play-state: paused
 }
 
-.high-low{
-    right: 0;
+.yelp_img {
+    margin:1%;
+    object-fit: cover;
+    width: 50%;
+    border-radius: 5px;
 }
 
-.yelp_container {
-    height: 25%;
-    width: 25%;
-    position: absolute;
-    bottom: 1%;
-    left: 1%;
-    margin: auto auto 5vh 5vw;
-    background-color: #b65824;
-}
-.yelp_container>div {
-    width: 9vh;
-    height: 9vw;
-    border: 1px solid black;
-}
-.yelp_img {
-    float:left;
-    object-fit: contain;
-    width: 50%;
-    height: 50%;
-}
 .yelpStars{
-    width: 11vw;
+    width: 80%;
     margin: 2%;
 }
+
 .yelpSelected{
-    border: white outset 0.1vw;
-    background-color: white
+    border: lightblue outset 0.1vw;
+    background-color: lightblue;
 }
+
 .yelp {
     color: black;
-    font-size: 1.7vw;
-    text-align: center;
-    height:100%;
+    display: inline-flex;
+    height:22%;
     width:100%;
     border-bottom: .2em dotted #6a6969;
 }
 
-.yelp >p,
-.Name_title >p,
-.price_title >p{
+.yelp-info {
+    text-align: left;
+}
+
+.yelp >p, .Name_title >p, .price_title >p {
     margin: 0;
-}
-.yelp > p:first-child{
-    font-size: 1.7vw;
-}
-.storeType{
-    font-size: 3vw;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    background-color: burlywood;
-}
-
-.rounded-border {
-    border-radius: 10%
-}
-
-.clickedBeach {
-    color: green;
 }
 
 .content {
