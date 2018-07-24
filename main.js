@@ -111,12 +111,12 @@ function getWeatherFomDarkSky(){
         'url': ' https://api.darksky.net/forecast/7c03619a4eb88722f133d0a7878f1503/33.51941, -117.76292',
         'method': 'GET',
         success: function (result) {
-            let currentTemp = `${Math.ceil(result.currently.temperature)} ${String.fromCharCode(176)}F`;
+            let currentTemp = `${Math.round(result.currently.temperature)} ${String.fromCharCode(176)}F`;
             let currentWeatherIcon = result.currently.icon;
-            let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
-            let humidity = `Humidity: ${((result.currently.humidity)*100)}%`;
-            let dailyHighTemp = `High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
-            let dailyLowTemp = `Low: ${Math.ceil(result.daily.data[0].temperatureMin)} F`;
+            let feelsLikeTemp = `Feels Like: ${Math.round(result.currently.apparentTemperature)} ${String.fromCharCode(176)}F`;
+            let humidity = `Humidity: ${Math.round(result.currently.humidity)*100}%`;
+            let dailyHighTemp = `High: ${Math.round(result.daily.data[0].temperatureMax)} ${String.fromCharCode(176)}F`;
+            let dailyLowTemp = `Low: ${Math.round(result.daily.data[0].temperatureMin)} ${String.fromCharCode(176)}F`;
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
@@ -348,13 +348,13 @@ function dropMarker() {
             animation: google.maps.Animation.DROP,
         });
 
-        clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+        beachClickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
         markerArray.push(marker)
 
     }
 }
 
-function clickHandler(markerClicked, beachObj, index){
+function beachClickHandler(markerClicked, beachObj, index){
     var storeType = ["bar", "coffee", "food", "hotel"];
     markerClicked.addListener('click', function() {
         $(".info-content").empty();
@@ -381,6 +381,7 @@ function clickHandler(markerClicked, beachObj, index){
         displayImage(beachObj);
         displayComment(beachObj);
         removeMarkers(storeYelpMarkers);
+        $(".food-icon").addClass("highlight");
     });
 }
 
