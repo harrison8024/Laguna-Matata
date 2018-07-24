@@ -2,9 +2,10 @@
 $(document).ready(initializeApp);
 
 var map;
+var storeIconOn = false;
 var markerArray = [];
 var beachesArray = [];
-let storeYelpMarkers = [];
+var storeYelpMarkers = [];
 var beachArray = [
     "Cameo Cove",
     "Emerald Bay",
@@ -451,17 +452,19 @@ function yelpObjectConstructor(yelpData, type, beach){
 }
 
 function append_Yelp_Data_To_Dom( storeObject, type){
-    let name = $("<p>").text(storeObject.businesses_Name);
     let image = $("<img>").attr('src', storeObject.businesses_Img);
     image.addClass('yelp_img');
+    let infoDiv = $("<div>").addClass("yelp-info");
+    let name = $("<p>").text(storeObject.businesses_Name);
     let ratingNumber = storeObject.businesses_Rating.toString();
     let yelp_star = $("<img>").attr("src", yelpStars[ratingNumber]);
     yelp_star.addClass("yelpStars");
     let reviewCount =  $("<p>").text( storeObject.businesses_Review_count + " reviews");
+    infoDiv.append(name, yelp_star, reviewCount);
     let yelp_data_content = $("<div>");
-    yelp_data_content.addClass('yelp').append(name,image,yelp_star,reviewCount);
+    yelp_data_content.addClass('yelp').append(image, infoDiv);
     $("." + type).append(yelp_data_content);
-    let yelpMarker = plot_Yelp_Data_On_Map(storeObject);
+    let yelpMarker = plot_Yelp_Data_On_Map(storeObject, type);
     yelp_data_content.on("click", function(){
         $(".yelpSelected").removeClass("yelpSelected");
         yelp_data_content.addClass("yelpSelected");
@@ -478,12 +481,38 @@ function scrolling() {
     $('.info-content').scrollTop(300);
 }
 
-function plot_Yelp_Data_On_Map(yelpPlace){
+function plot_Yelp_Data_On_Map(yelpPlace, type){
+    let imgUrl;
+    switch (type) {
+        case "food":
+            imgUrl = "assets/Images/dish.svg"
+            break;
+        case "hotel":
+            imgUrl = "assets/Images/bed.svg"
+            break;
+        case "coffee":
+            imgUrl = "assets/Images/coffee.svg"
+            break;
+        case "bar":
+            imgUrl = "assets/Images/cocktail-shadow.svg"
+            break;
+    
+        default:
+            break;
+    }
+    let image = {
+        url: imgUrl,
+        size: new google.maps.Size(30, 30),
+        scaledSize: new google.maps.Size(30, 30),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0,32)
+    };
     let yelpMarker = new google.maps.Marker({
         position: {
             lat: yelpPlace.businesses_Coordinates.latitude,
             lng: yelpPlace.businesses_Coordinates.longitude
         },
+        icon: image,
         map: map,
         label: "",
         animation: google.maps.Animation.DROP,
@@ -503,6 +532,8 @@ function addClickHandlerToStoreIcon(){
 }
 
 function storeIconEventListener(){
+    $(".store-icon").removeClass("highlight");
+    $(this).addClass("highlight");
     let type = $(this).attr("type");
     $(".info-content").addClass("hidden");
     $("."+type).removeClass("hidden");
