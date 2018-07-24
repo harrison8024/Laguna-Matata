@@ -5,7 +5,7 @@ var map;
 var storeIconOn = false;
 var markerArray = [];
 var beachesArray = [];
-var storeYelpMarkers = [];
+var yelpMarkerArray = [];
 var beachArray = [
     "Cameo Cove",
     "Emerald Bay",
@@ -192,7 +192,7 @@ function initMap() {
     var lagunaCenter = {lat: 33.522759, lng: -117.763314};
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
-        zoom: 13.4,
+        zoom: 13,
         disableDefaultUI: true,
         mapTypeId: 'terrain',
         styles: [
@@ -361,15 +361,7 @@ function beachClickHandler(markerClicked, beachObj, index){
         for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
              yelpRatingandPictures(beachObj, storeType[typeIndex]);
         }
-
-        for(var i = 0; i < markerArray.length; i++){
-            markerArray[i].setIcon({
-                url: 'assets/Images/beachIcon.png',
-                anchor: new google.maps.Point(0, 0),
-                origin: new google.maps.Point(0, 0),
-            });
-            markerArray[i].setAnimation(null);
-        }
+        removeMarkerAnimation();
         markerClicked.setIcon({
             url: 'assets/Images/beachIconSelected.png',
             anchor: new google.maps.Point(0, 0),
@@ -380,13 +372,26 @@ function beachClickHandler(markerClicked, beachObj, index){
         markerClicked.setAnimation(google.maps.Animation.BOUNCE);
         displayImage(beachObj);
         displayComment(beachObj);
-        removeMarkers(storeYelpMarkers);
+        removeMarkers(yelpMarkerArray);
         $(".food-icon").addClass("highlight");
+        addResetButton();
     });
 }
 
+function removeMarkerAnimation(){
+    for(var i = 0; i < markerArray.length; i++){
+        markerArray[i].setIcon({
+            url: 'assets/Images/beachIcon.png',
+            anchor: new google.maps.Point(0, 0),
+            origin: new google.maps.Point(0, 0),
+        });
+        markerArray[i].setAnimation(null);
+    }
+}
+
 function displayImage(clickedObj){
-    $('.image').css('background-image', 'url('+clickedObj.picture+')');
+    let beachImage = $(`<img src="${clickedObj.picture}" alt = "beach">`).addClass("beach-image");
+    $('.image').append(beachImage);
 }
 
 function displayComment(clickedObj){
@@ -471,8 +476,8 @@ function append_Yelp_Data_To_Dom( storeObject, type){
         yelp_data_content.addClass("yelpSelected");
     });
     yelp_data_content.on("click", yelpMarker, function(){
-        for(let markerIndex = 0; markerIndex < storeYelpMarkers.length; markerIndex++){
-            storeYelpMarkers[markerIndex].setAnimation(null);
+        for(let markerIndex = 0; markerIndex < yelpMarkerArray.length; markerIndex++){
+            yelpMarkerArray[markerIndex].setAnimation(null);
         }
         yelpMarker.setAnimation(google.maps.Animation.BOUNCE);
     });
@@ -518,13 +523,13 @@ function plot_Yelp_Data_On_Map(yelpPlace, type){
         label: "",
         animation: google.maps.Animation.DROP,
     });
-    storeYelpMarkers.push(yelpMarker);
+    yelpMarkerArray.push(yelpMarker);
     return yelpMarker;
 }
 
-function removeMarkers(YelpMarkers){
-    for(let i=0; i<YelpMarkers.length; i++){
-        YelpMarkers[i].setMap(null);
+function removeMarkers(markers){
+    for(let i=0; i<markers.length; i++){
+        markers[i].setMap(null);
     }
 }
 
@@ -538,4 +543,24 @@ function storeIconEventListener(){
     let type = $(this).attr("type");
     $(".info-content").addClass("hidden");
     $("."+type).removeClass("hidden");
+}
+
+function addResetButton(){
+   $(".back").removeClass("hidden");
+   $(".back").on("click", resetMap);
+}
+
+function resetMap(){
+    removeMarkers(yelpMarkerArray);
+    yelpMarkerArray = [];
+    removeMarkerAnimation();
+    map.setCenter({lat: 33.522759, lng: -117.763314});
+    map.setZoom(13);
+    $(".back").addClass("hidden");
+    $(".info-content").empty();
+    $(".store-icon").removeClass("highlight");
+    $(".image").empty();
+    $(".beachName").empty();
+    $(".reviewRating").empty();
+    $(".reviewText").empty().text("Select an icon to get information on one of Laguna Beach's several hard to find beaches and coves.");
 }

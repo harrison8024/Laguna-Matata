@@ -93,21 +93,31 @@ header {
     width: 100%;
 }
 
+.back{
+    position: absolute;
+    height:50px;
+    width:50px;
+    top:1%;
+    left:1%;
+    z-index: 1
+}
+
 .picture {
     height: 30%;
     width: 30%;
     position: absolute;
     bottom: 30%;
     left: 1%;
-    background-size: contain;
-    background-repeat: no-repeat;
+}
+
+img {
+    max-width: 100%;
 }
 
 .image {
-    height: 90%;
+    width: 100%;
     margin: 2%;
-    background-size: cover;
-    background-repeat: no-repeat;
+    object-fit: contain;
 }
 
 .reviewTextBox {
@@ -191,7 +201,7 @@ header {
   
 @keyframes marquee {
     0% { left: 0; }
-    100% { left: -100%; }
+    100% { left: -125%; }
 }
 
 .marquee:hover {
