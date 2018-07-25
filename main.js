@@ -102,6 +102,7 @@ var yelpStars = {
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
+    beachInfoBarConstructor();
     addClickHandlerToStoreIcon();
 }
 
@@ -329,6 +330,7 @@ function constructBeachObjects(){
         beachesArray.push(beach);
     }
 }
+
 function dropMarker() {
     var image = {
         url: 'assets/Images/beachIcon.png',
@@ -352,6 +354,20 @@ function dropMarker() {
         beachClickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
         markerArray.push(marker)
 
+    }
+}
+
+function beachInfoBarConstructor(){
+    for (let beachIndex = 0; beachIndex < beachesArray.length; beachIndex++){
+        let beachInfo = $("<div>").addClass("beach-content").on("mouseover", function(){
+            $(this).addClass("yelpSelected");
+        }).on("mouseout", function(){
+            $(this).removeClass("yelpSelected");
+        });
+        let beachImg = $(`<img src = "${beachesArray[beachIndex].picture}">`);
+        let beachName = $("<p>").text(beachesArray[beachIndex].name);
+        beachInfo.append(beachImg, beachName);
+        $(".beach-info").append(beachInfo);
     }
 }
 

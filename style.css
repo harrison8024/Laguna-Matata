@@ -56,7 +56,30 @@ header {
     border: 1px solid black;
     box-sizing: border-box;
     background-color: lightgray;
-    opacity: 0.8;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.beach-content{
+    color: black;
+    height: 15%;
+    width: 100%;
+    border-bottom: 1px solid #6a6969;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.beach-content > img {
+    width: 50%;
+    border-radius: 5px;
+}
+
+.beach-content > p {
+    font-weight: bold;
+    text-align: center;
+    margin: 5%;
 }
 
 .store-icon-container{
