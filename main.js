@@ -400,6 +400,9 @@ function beachClickHandler(markerClicked, beachObj, index){
         map.panTo(markerClicked.getPosition());
         map.setZoom(16);
         markerClicked.setAnimation(google.maps.Animation.BOUNCE);
+        $(".image").empty();
+        $(".beachName").empty();
+        $(".reviewRating").empty();
         displayImage(beachObj);
         displayComment(beachObj);
         removeMarkers(yelpMarkerArray);
