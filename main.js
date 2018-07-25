@@ -359,10 +359,23 @@ function dropMarker() {
 
 function beachInfoBarConstructor(){
     for (let beachIndex = 0; beachIndex < beachesArray.length; beachIndex++){
-        let beachInfo = $("<div>").addClass("beach-content").on("mouseover", function(){
+        let beachInfo = $("<div>").addClass("beach-content").attr("beach-number", beachIndex).on("mouseover", function(){
+            markerArray[$(this).attr("beach-number")].setIcon({
+                    url: 'assets/Images/beachIconSelected.png',
+                    anchor: new google.maps.Point(0, 0),
+                    origin: new google.maps.Point(0, 0),
+                });
             $(this).addClass("yelpSelected");
         }).on("mouseout", function(){
+            markerArray[$(this).attr("beach-number")].setIcon({
+                url: 'assets/Images/beachIcon.png',
+                anchor: new google.maps.Point(0, 0),
+                origin: new google.maps.Point(0, 0),
+            });
             $(this).removeClass("yelpSelected");
+        }).on("click", function(){
+            google.maps.event.trigger(markerArray[$(this).attr("beach-number")], "click");
+            $(".beach-info").addClass("hidden");
         });
         let beachImg = $(`<img src = "${beachesArray[beachIndex].picture}">`);
         let beachName = $("<p>").text(beachesArray[beachIndex].name);
@@ -391,6 +404,7 @@ function beachClickHandler(markerClicked, beachObj, index){
         displayComment(beachObj);
         removeMarkers(yelpMarkerArray);
         $(".food-icon").addClass("highlight");
+        $(".beach-info").addClass("hidden");
         addResetButton();
     });
 }
@@ -573,6 +587,7 @@ function resetMap(){
     removeMarkerAnimation();
     map.setCenter({lat: 33.522759, lng: -117.763314});
     map.setZoom(13);
+    $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
     $(".info-content").empty();
     $(".store-icon").removeClass("highlight");
