@@ -102,6 +102,7 @@ var yelpStars = {
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
+    beachInfoBarConstructor();
     addClickHandlerToStoreIcon();
 }
 
@@ -143,9 +144,11 @@ function convertTimeToPacificDaylight(time){
 }
 
 function appendWeatherInfoToDom (obj){
-    let currentTemp = $("<div>").text(obj.currentTemp);
+    let currentTemp = $("<h1>").text(obj.currentTemp)
+    let currentWeatherDiv = $("<div>").addClass("weather-temp");
     let currentWeatherIcon = $("<canvas>").attr({"id": "weather-icon","height": 50, "width": 50});
-    currentTemp.prepend(currentWeatherIcon);
+    currentWeatherDiv.append(currentWeatherIcon);
+    currentWeatherDiv.append(currentTemp);
     let feelsLikeTemp =  $("<p>").text(obj.feelsLikeTemp);
     let humidity =  $("<p>").text(obj.humidity);
     let dailyHighTemp =  $("<p>").text(obj.dailyHighTemp);
@@ -153,8 +156,7 @@ function appendWeatherInfoToDom (obj){
     let dailyWeatherSummary = $("<p>").text(obj.dailyWeatherSummary);
     let sunriseTime = $("<p>").text(obj.sunriseTime);
     let sunsetTime = $("<p>").text(obj.sunsetTime);
-    currentTemp.addClass("weather-temp");
-    $(".weather").append(currentTemp);
+    $(".weather").append(currentWeatherDiv);
     chooseWeatherIcon(obj.currentWeatherIcon);
     $(".marquee-inner-1").append(feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, sunriseTime, sunsetTime, dailyWeatherSummary);
     $(".marquee-inner-2").append(feelsLikeTemp.clone(), humidity.clone(), dailyHighTemp.clone(), dailyLowTemp.clone(), sunriseTime.clone(), sunsetTime.clone(), dailyWeatherSummary.clone());
@@ -328,6 +330,7 @@ function constructBeachObjects(){
         beachesArray.push(beach);
     }
 }
+
 function dropMarker() {
     var image = {
         url: 'assets/Images/beachIcon.png',
@@ -354,6 +357,33 @@ function dropMarker() {
     }
 }
 
+function beachInfoBarConstructor(){
+    for (let beachIndex = 0; beachIndex < beachesArray.length; beachIndex++){
+        let beachInfo = $("<div>").addClass("beach-content").attr("beach-number", beachIndex).on("mouseover", function(){
+            markerArray[$(this).attr("beach-number")].setIcon({
+                    url: 'assets/Images/beachIconSelected.png',
+                    anchor: new google.maps.Point(0, 0),
+                    origin: new google.maps.Point(0, 0),
+                });
+            $(this).addClass("yelpSelected");
+        }).on("mouseout", function(){
+            markerArray[$(this).attr("beach-number")].setIcon({
+                url: 'assets/Images/beachIcon.png',
+                anchor: new google.maps.Point(0, 0),
+                origin: new google.maps.Point(0, 0),
+            });
+            $(this).removeClass("yelpSelected");
+        }).on("click", function(){
+            google.maps.event.trigger(markerArray[$(this).attr("beach-number")], "click");
+            $(".beach-info").addClass("hidden");
+        });
+        let beachImg = $(`<img src = "${beachesArray[beachIndex].picture}">`);
+        let beachName = $("<p>").text(beachesArray[beachIndex].name);
+        beachInfo.append(beachImg, beachName);
+        $(".beach-info").append(beachInfo);
+    }
+}
+
 function beachClickHandler(markerClicked, beachObj, index){
     var storeType = ["bar", "coffee", "food", "hotel"];
     markerClicked.addListener('click', function() {
@@ -374,6 +404,7 @@ function beachClickHandler(markerClicked, beachObj, index){
         displayComment(beachObj);
         removeMarkers(yelpMarkerArray);
         $(".food-icon").addClass("highlight");
+        $(".beach-info").addClass("hidden");
         addResetButton();
     });
 }
@@ -556,6 +587,7 @@ function resetMap(){
     removeMarkerAnimation();
     map.setCenter({lat: 33.522759, lng: -117.763314});
     map.setZoom(13);
+    $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
     $(".info-content").empty();
     $(".store-icon").removeClass("highlight");
