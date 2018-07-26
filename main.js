@@ -477,13 +477,15 @@ function yelpObjectConstructor(yelpData, type, beach){
         let businesses_Coordinates = yelpData.businesses[storeIndex].coordinates;
         let businesses_Distance = yelpData.businesses[storeIndex].distance;
         let businesses_Review_count = yelpData.businesses[storeIndex].review_count;
+        let businesses_url = yelpData.businesses[storeIndex].url;
         var storeObject = {
             businesses_Name,
             businesses_Img,
             businesses_Rating,
             businesses_Coordinates,
             businesses_Distance,
-            businesses_Review_count
+            businesses_Review_count,
+            businesses_url
         };
         storeObjectArray.push(storeObject);
         append_Yelp_Data_To_Dom(storeObject, type);
@@ -504,7 +506,8 @@ function append_Yelp_Data_To_Dom( storeObject, type){
     let yelp_star = $("<img>").attr("src", yelpStars[ratingNumber]);
     yelp_star.addClass("yelpStars");
     let reviewCount =  $("<p>").text( storeObject.businesses_Review_count + " reviews");
-    infoDiv.append(name, yelp_star, reviewCount);
+    let linkButton = $("<a>").attr({"href":storeObject.businesses_url, "target": "_blank"}).text("visit");
+    infoDiv.append(name, yelp_star, reviewCount, linkButton);
     let yelp_data_content = $("<div>");
     yelp_data_content.addClass('yelp').append(image, infoDiv);
     $("." + type).append(yelp_data_content);
@@ -597,6 +600,8 @@ function resetMap(){
     $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
     $(".info-content").empty();
+    $(".info-contnet").addClass("hidden");
+    $(".food").removeClass("hidden");
     $(".store-icon").removeClass("highlight");
     $(".image").empty();
     $(".beachName").empty();
