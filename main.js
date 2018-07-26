@@ -492,7 +492,11 @@ function yelpObjectConstructor(yelpData, type, beach){
 }
 
 function append_Yelp_Data_To_Dom( storeObject, type){
-    let image = $("<img>").attr('src', storeObject.businesses_Img);
+    if(storeObject.businesses_Img){
+        var image = $("<img>").attr('src', storeObject.businesses_Img);
+    } else {
+        var image = $("<img>").attr('src', "./assets/Images/no-image.svg");
+    }
     image.addClass('yelp_img');
     let infoDiv = $("<div>").addClass("yelp-info");
     let name = $("<p>").text(storeObject.businesses_Name);
