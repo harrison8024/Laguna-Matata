@@ -400,6 +400,9 @@ function beachClickHandler(markerClicked, beachObj, index){
         map.panTo(markerClicked.getPosition());
         map.setZoom(16);
         markerClicked.setAnimation(google.maps.Animation.BOUNCE);
+        $(".image").empty();
+        $(".beachName").empty();
+        $(".reviewRating").empty();
         displayImage(beachObj);
         displayComment(beachObj);
         removeMarkers(yelpMarkerArray);
@@ -474,22 +477,28 @@ function yelpObjectConstructor(yelpData, type, beach){
         let businesses_Coordinates = yelpData.businesses[storeIndex].coordinates;
         let businesses_Distance = yelpData.businesses[storeIndex].distance;
         let businesses_Review_count = yelpData.businesses[storeIndex].review_count;
+        let businesses_url = yelpData.businesses[storeIndex].url;
         var storeObject = {
             businesses_Name,
             businesses_Img,
             businesses_Rating,
             businesses_Coordinates,
             businesses_Distance,
-            businesses_Review_count
+            businesses_Review_count,
+            businesses_url
         };
         storeObjectArray.push(storeObject);
-        append_Yelp_Data_To_Dom(storeObject, type);
+        append_Yelp_Data_To_Dom(storeObject, type, storeIndex);
     }
     beach[type] = storeObjectArray;
 }
 
-function append_Yelp_Data_To_Dom( storeObject, type){
-    let image = $("<img>").attr('src', storeObject.businesses_Img);
+function append_Yelp_Data_To_Dom( storeObject, type, storeIndex){
+    if(storeObject.businesses_Img){
+        var image = $("<img>").attr('src', storeObject.businesses_Img);
+    } else {
+        var image = $("<img>").attr('src', "./assets/Images/no-image.svg");
+    }
     image.addClass('yelp_img');
     let infoDiv = $("<div>").addClass("yelp-info");
     let name = $("<p>").text(storeObject.businesses_Name);
@@ -497,11 +506,24 @@ function append_Yelp_Data_To_Dom( storeObject, type){
     let yelp_star = $("<img>").attr("src", yelpStars[ratingNumber]);
     yelp_star.addClass("yelpStars");
     let reviewCount =  $("<p>").text( storeObject.businesses_Review_count + " reviews");
-    infoDiv.append(name, yelp_star, reviewCount);
+    let linkButton = $("<a>").attr({"href":storeObject.businesses_url, "target": "_blank"}).text("visit");
+    infoDiv.append(name, yelp_star, reviewCount, linkButton);
     let yelp_data_content = $("<div>");
     yelp_data_content.addClass('yelp').append(image, infoDiv);
     $("." + type).append(yelp_data_content);
     let yelpMarker = plot_Yelp_Data_On_Map(storeObject, type);
+    google.maps.event.addListener(yelpMarker, "click", function(){
+        for(let markerIndex = 0; markerIndex < yelpMarkerArray.length; markerIndex++){
+            yelpMarkerArray[markerIndex].setAnimation(null);
+        }
+        yelpMarker.setAnimation(google.maps.Animation.BOUNCE);
+        $(".store-icon").removeClass("highlight");
+        $(`.${type}-icon`).addClass("highlight");
+        $(".info-content").addClass("hidden");
+        $(`.${type}`).removeClass("hidden");
+        $(".yelpSelected").removeClass("yelpSelected");
+        yelp_data_content.addClass("yelpSelected");
+    });
     yelp_data_content.on("click", function(){
         $(".yelpSelected").removeClass("yelpSelected");
         yelp_data_content.addClass("yelpSelected");
@@ -551,6 +573,7 @@ function plot_Yelp_Data_On_Map(yelpPlace, type){
         },
         icon: image,
         map: map,
+        type: type,
         label: "",
         animation: google.maps.Animation.DROP,
     });
@@ -590,6 +613,8 @@ function resetMap(){
     $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
     $(".info-content").empty();
+    $(".info-content").addClass("hidden");
+    $(".food").removeClass("hidden");
     $(".store-icon").removeClass("highlight");
     $(".image").empty();
     $(".beachName").empty();

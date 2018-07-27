@@ -66,7 +66,6 @@ header {
     width: 100%;
     border-bottom: 1px solid #6a6969;
     display: inline-flex;
-    justify-content: space-between;
     padding: 2%;
     box-sizing: border-box;
 }
@@ -78,7 +77,6 @@ header {
 
 .beach-content > p {
     font-weight: bold;
-    text-align: center;
     margin: 5%;
 }
 
@@ -242,7 +240,7 @@ img {
 .yelp_img {
     margin:1%;
     object-fit: cover;
-    width: 50%;
+    width: 40%;
     border-radius: 5px;
 }
 
@@ -259,7 +257,7 @@ img {
 .yelp {
     color: black;
     display: inline-flex;
-    height:22%;
+    height:24%;
     width:100%;
     border-bottom: .2em dotted #6a6969;
 }
