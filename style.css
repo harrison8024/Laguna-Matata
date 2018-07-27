@@ -4,6 +4,11 @@
     font-family: 'Lato', sans-serif;
 }
 
+header{
+    height:11vh;
+    background-color: lightgoldenrodyellow;
+}
+
 .hidden{
     display: none;
 }
@@ -15,7 +20,7 @@
 
 .text-title{
     font-weight: 800;
-    font-size: 5vh;
+    font-size: 4.5vh;
 }
 
 .header-container{
@@ -180,22 +185,21 @@ img {
 #weather-icon{}
 
 .marquee {
-    background-color: cornflowerblue;
+    background-color: black;
     height: 100%;
     width: 100%;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
   }
   
 .marquee-container{
     height: 5vh;
-    margin-left: 1%;
-    margin-right: 1%;
     box-sizing: border-box;
 }
 .marquee-content{
-    width: 250%;  
+    width: 350%;  
     position: absolute;
     overflow: hidden;
     padding:1%;
@@ -204,7 +208,7 @@ img {
 }
   
 .marquee-inner-1, .marquee-inner-2 {
-    color: khaki;
+    color: white;
     float:left;
     width: 50%;
 }
@@ -217,7 +221,7 @@ img {
   
 @keyframes marquee {
     0% { left: 0; }
-    100% { left: -125%; }
+    100% { left: -175%; }
 }
 
 .marquee-content:hover {
@@ -258,6 +262,7 @@ img {
 }
 
 .content {
+    background-color: lightsteelblue;
     height: 83vh;
     width: 100vw;
     display: inline-flex;
