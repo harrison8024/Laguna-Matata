@@ -488,12 +488,12 @@ function yelpObjectConstructor(yelpData, type, beach){
             businesses_url
         };
         storeObjectArray.push(storeObject);
-        append_Yelp_Data_To_Dom(storeObject, type);
+        append_Yelp_Data_To_Dom(storeObject, type, storeIndex);
     }
     beach[type] = storeObjectArray;
 }
 
-function append_Yelp_Data_To_Dom( storeObject, type){
+function append_Yelp_Data_To_Dom( storeObject, type, storeIndex){
     if(storeObject.businesses_Img){
         var image = $("<img>").attr('src', storeObject.businesses_Img);
     } else {
@@ -512,6 +512,18 @@ function append_Yelp_Data_To_Dom( storeObject, type){
     yelp_data_content.addClass('yelp').append(image, infoDiv);
     $("." + type).append(yelp_data_content);
     let yelpMarker = plot_Yelp_Data_On_Map(storeObject, type);
+    google.maps.event.addListener(yelpMarker, "click", function(){
+        for(let markerIndex = 0; markerIndex < yelpMarkerArray.length; markerIndex++){
+            yelpMarkerArray[markerIndex].setAnimation(null);
+        }
+        yelpMarker.setAnimation(google.maps.Animation.BOUNCE);
+        $(".store-icon").removeClass("highlight");
+        $(`.${type}-icon`).addClass("highlight");
+        $(".info-content").addClass("hidden");
+        $(`.${type}`).removeClass("hidden");
+        $(".yelpSelected").removeClass("yelpSelected");
+        yelp_data_content.addClass("yelpSelected");
+    });
     yelp_data_content.on("click", function(){
         $(".yelpSelected").removeClass("yelpSelected");
         yelp_data_content.addClass("yelpSelected");
@@ -561,6 +573,7 @@ function plot_Yelp_Data_On_Map(yelpPlace, type){
         },
         icon: image,
         map: map,
+        type: type,
         label: "",
         animation: google.maps.Animation.DROP,
     });
@@ -600,7 +613,7 @@ function resetMap(){
     $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
     $(".info-content").empty();
-    $(".info-contnet").addClass("hidden");
+    $(".info-content").addClass("hidden");
     $(".food").removeClass("hidden");
     $(".store-icon").removeClass("highlight");
     $(".image").empty();
