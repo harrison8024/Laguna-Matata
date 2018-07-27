@@ -22,24 +22,12 @@
     display: inline-flex;
     width: 100%;
     height: 100%;
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    height: 11vh;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100vw;
+    padding:1%;
     box-sizing: border-box;
-    background-color: white;
 }
 
 .logo-text{
-    width: 50%;
-    height: 50%;
-    float: left;
-   
+    width:90%;
 }
 
 .info-container-wrapper{
@@ -177,9 +165,8 @@ img {
 }
 
 .weather {
-    width:30%;
+    width:200px;
     height: 100%;
-    text-align: center;
     padding: 1%;
     box-sizing: border-box;
 }
@@ -213,7 +200,7 @@ img {
     overflow: hidden;
     padding:1%;
   
-    animation: marquee 10s linear infinite;
+    animation: marquee 30s linear infinite;
 }
   
 .marquee-inner-1, .marquee-inner-2 {
@@ -233,7 +220,7 @@ img {
     100% { left: -125%; }
 }
 
-.marquee:hover {
+.marquee-content:hover {
     animation-play-state: paused
 }
 
