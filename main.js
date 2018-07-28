@@ -375,6 +375,22 @@ function beachInfoBarConstructor(){
 
 function beachClickHandler(markerClicked, beachObj, index){
     var storeType = ["bar", "coffee", "food", "hotel"];
+    markerClicked.addListener("mouseover", function(){
+        markerClicked.setIcon({
+            url: 'assets/Images/beachIconSelected.png',
+            anchor: new google.maps.Point(0, 0),
+            origin: new google.maps.Point(0, 0),
+        });
+        $(`div[beach-number=${index}]`).addClass("selected");
+    });
+    markerClicked.addListener("mouseout", function(){
+        markerClicked.setIcon({
+            url: 'assets/Images/beachIcon.png',
+            anchor: new google.maps.Point(0, 0),
+            origin: new google.maps.Point(0, 0),
+        });
+        $(`div[beach-number=${index}]`).removeClass("selected");
+    });
     markerClicked.addListener('click', function() {
         $(".info-content").empty();
         for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
