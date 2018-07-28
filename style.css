@@ -58,7 +58,9 @@ header{
     height: 20%;
     background-color: #f6f7f7;
     display: inline-flex;
-    margin:5%;
+    margin-bottom: 12%;
+    margin-left: 2%;
+    margin-right: 2%;
     border-radius: 10px;
     box-sizing: border-box;
 }
@@ -276,9 +278,11 @@ img {
 }
 ::-webkit-scrollbar-track {
     background-color:#EDF4FA ;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: #FFD3B2;
+    border-radius: 10px;
     /* height: 50%; */
 }
 
