@@ -183,10 +183,7 @@ img {
     justify-content: space-around;
 }
 
-#weather-icon{}
-
 .marquee {
-    background-color: #EDF4FA ;
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -195,11 +192,14 @@ img {
   }
   
 .marquee-container{
+    background-color: #EDF4FA ;
     height: 5vh;
     box-sizing: border-box;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 .marquee-content{
-    width: 350%;  
+    width: 500%;  
     position: absolute;
     overflow: hidden;
     padding:1%;
@@ -221,7 +221,7 @@ img {
   
 @keyframes marquee {
     0% { left: 0; }
-    100% { left: -175%; }
+    100% { left: -250%; }
 }
 
 .marquee-content:hover {
@@ -272,14 +272,14 @@ img {
 }
 
 ::-webkit-scrollbar{
-    width: 2%;
+    width: 2px;
 }
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #1E4969;
-    height: 1%
+    background-color: black;
+    height: 5%;
 }
 
  @media only screen and (max-width: 600px) {
