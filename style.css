@@ -6,7 +6,7 @@
 
 header{
     height:11vh;
-    background-color: lightgoldenrodyellow;
+    background-color: #FFD3B2;
 }
 
 .hidden{
@@ -32,6 +32,7 @@ header{
 }
 
 .logo-text{
+    color: white;
     width:90%;
 }
 
@@ -185,13 +186,12 @@ img {
 #weather-icon{}
 
 .marquee {
-    background-color: black;
+    background-color: #EDF4FA ;
     height: 100%;
     width: 100%;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
   }
   
 .marquee-container{
@@ -208,7 +208,7 @@ img {
 }
   
 .marquee-inner-1, .marquee-inner-2 {
-    color: white;
+    color: black;
     float:left;
     width: 50%;
 }
@@ -262,7 +262,7 @@ img {
 }
 
 .content {
-    background-color: lightsteelblue;
+    background-color: #EDF4FA;
     height: 83vh;
     width: 100vw;
     display: inline-flex;

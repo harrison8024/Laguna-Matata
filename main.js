@@ -196,13 +196,46 @@ function initMap() {
         center: lagunaCenter,
         zoom: 13,
         disableDefaultUI: true,
-        mapTypeId: 'terrain',
         styles: [
             {
                 "elementType": "geometry",
                 "stylers": [
                     {
-                        "color": "#ebe3cd"
+                        "saturation": -35
+                    },
+                    {
+                        "lightness": 15
+                    }
+                
+                ]
+            },
+            {
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "weight": 3
+                    }
+                ]
+            },
+            {
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#fd6771"
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text",
+                "stylers": [
+                    {
+                        "color": "#f39b5b"
+                    },
+                    {
+                        "weight": 3
                     }
                 ]
             },
@@ -210,7 +243,7 @@ function initMap() {
                 "elementType": "labels.text.fill",
                 "stylers": [
                     {
-                        "color": "#523735"
+                        "visibility": "off"
                     }
                 ]
             },
@@ -218,58 +251,15 @@ function initMap() {
                 "elementType": "labels.text.stroke",
                 "stylers": [
                     {
-                        "color": "#f5f1e6"
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "geometry.stroke",
-                "stylers": [
+                        "color": "#f39b5b"
+                    },
                     {
-                        "color": "#ebe3cd"
+                        "weight": 5
                     }
                 ]
             },
             {
-                "featureType": "administrative.land_parcel",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "color": "#dcd2be"
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative.land_parcel",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#ae9e90"
-                    }
-                ]
-            },
-            {
-                featureType: 'poi.business',
-                stylers: [{visibility: 'off'}]
-            },
-            {
-                featureType: 'transit',
-                elementType: 'labels.icon',
-                stylers: [{visibility: 'off'}]
-            },
-            {
-                "featureType": "landscape.natural",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#ebe3cd"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels.text",
+                "featureType": "poi.business",
                 "stylers": [
                     {
                         "visibility": "off"
@@ -278,37 +268,36 @@ function initMap() {
             },
             {
                 "featureType": "poi.park",
-                "elementType": "geometry.fill",
+                "elementType": "labels.text",
                 "stylers": [
                     {
-                        "color": "#a5b076"
+                        "visibility": "off"
                     }
                 ]
             },
             {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
+                "featureType": "road.arterial",
+                "elementType": "labels",
                 "stylers": [
                     {
-                        "color": "#447530"
+                        "visibility": "off"
                     }
                 ]
             },
             {
-                "featureType": "water",
-                "elementType": "geometry.fill",
+                "featureType": "road.highway",
+                "elementType": "labels",
                 "stylers": [
                     {
-                        "color": "#275D87"
+                        "visibility": "off"
                     }
                 ]
             },
             {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
+                "featureType": "road.local",
                 "stylers": [
                     {
-                        "color": "#92998d"
+                        "visibility": "off"
                     }
                 ]
             }
