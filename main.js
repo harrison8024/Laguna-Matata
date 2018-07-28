@@ -164,7 +164,7 @@ function appendWeatherInfoToDom (obj){
 }
 
 function chooseWeatherIcon(icon){
-    let skycons = new Skycons({color: "black"});
+    let skycons = new Skycons({color: "white"});
     switch(icon){
         case "clear-day":
             skycons.add("weather-icon", Skycons.CLEAR_DAY);
@@ -191,7 +191,7 @@ function chooseWeatherIcon(icon){
 }
 
 function initMap() {
-    var lagunaCenter = {lat: 33.522759, lng: -117.763314};
+    var lagunaCenter = {lat: 33.522759, lng: -117.773314};
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
         zoom: 13,
@@ -354,14 +354,14 @@ function beachInfoBarConstructor(){
                     anchor: new google.maps.Point(0, 0),
                     origin: new google.maps.Point(0, 0),
                 });
-            $(this).addClass("yelpSelected");
+            $(this).addClass("selected");
         }).on("mouseout", function(){
             markerArray[$(this).attr("beach-number")].setIcon({
                 url: 'assets/Images/beachIcon.png',
                 anchor: new google.maps.Point(0, 0),
                 origin: new google.maps.Point(0, 0),
             });
-            $(this).removeClass("yelpSelected");
+            $(this).removeClass("selected");
         }).on("click", function(){
             google.maps.event.trigger(markerArray[$(this).attr("beach-number")], "click");
             $(".beach-info").addClass("hidden");
@@ -510,12 +510,12 @@ function append_Yelp_Data_To_Dom( storeObject, type, storeIndex){
         $(`.${type}-icon`).addClass("highlight");
         $(".info-content").addClass("hidden");
         $(`.${type}`).removeClass("hidden");
-        $(".yelpSelected").removeClass("yelpSelected");
-        yelp_data_content.addClass("yelpSelected");
+        $(".selected").removeClass("selected");
+        yelp_data_content.addClass("selected");
     });
     yelp_data_content.on("click", function(){
-        $(".yelpSelected").removeClass("yelpSelected");
-        yelp_data_content.addClass("yelpSelected");
+        $(".selected").removeClass("selected");
+        yelp_data_content.addClass("selected");
     });
     yelp_data_content.on("click", yelpMarker, function(){
         for(let markerIndex = 0; markerIndex < yelpMarkerArray.length; markerIndex++){
