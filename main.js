@@ -375,7 +375,7 @@ function beachInfoBarConstructor(){
 
 function beachClickHandler(markerClicked, beachObj, index){
     var storeType = ["bar", "coffee", "food", "hotel"];
-    markerClicked.addListener("mouseover", function(){
+    let markerHoverListener = markerClicked.addListener("mouseover", function(){
         markerClicked.setIcon({
             url: 'assets/Images/beachIconSelected.png',
             anchor: new google.maps.Point(0, 0),
@@ -383,7 +383,7 @@ function beachClickHandler(markerClicked, beachObj, index){
         });
         $(`div[beach-number=${index}]`).addClass("selected");
     });
-    markerClicked.addListener("mouseout", function(){
+    let markerUnhoverListener = markerClicked.addListener("mouseout", function(){
         markerClicked.setIcon({
             url: 'assets/Images/beachIcon.png',
             anchor: new google.maps.Point(0, 0),
@@ -392,6 +392,8 @@ function beachClickHandler(markerClicked, beachObj, index){
         $(`div[beach-number=${index}]`).removeClass("selected");
     });
     markerClicked.addListener('click', function() {
+        google.maps.event.removeListener(markerHoverListener);
+        google.maps.event.removeListener(markerUnhoverListener);
         $(".info-content").empty();
         for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
              yelpRatingandPictures(beachObj, storeType[typeIndex]);
