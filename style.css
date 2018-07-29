@@ -5,7 +5,7 @@
 }
 
 header{
-    height:11vh;
+    height:14vh;
     background-color: #FFD3B2;
 }
 
@@ -33,7 +33,8 @@ header{
 
 .logo-text{
     color: white;
-    width:90%;
+    width:100%;
+    text-align: center;
 }
 
 .info-container-wrapper{
@@ -174,8 +175,9 @@ img {
 
 .weather {
     width:200px;
-    height: 100%;
     padding: 1%;
+    position: absolute;
+    right: 0;
     box-sizing: border-box;
 }
 
@@ -265,7 +267,7 @@ img {
 
 .content {
     background-color: #EDF4FA;
-    height: 83vh;
+    height: 81vh;
     width: 100vw;
     display: inline-flex;
     justify-content: space-between;
