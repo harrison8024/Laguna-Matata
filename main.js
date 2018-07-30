@@ -328,6 +328,7 @@ function dropMarker() {
     var image = {
         url: 'assets/Images/beach-marker-original.png',
         size: new google.maps.Size(40, 40),
+        scaledSize: new google.maps.Size(40, 40),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 0)
     };
@@ -355,6 +356,8 @@ function beachInfoBarConstructor(){
         let beachInfo = $("<div>").addClass("beach-content").attr("beach-number", beachIndex).on("mouseover", function(){
             markerArray[$(this).attr("beach-number")].setIcon({
                     url: 'assets/Images/beach-marker-highlight.png',
+                    size: new google.maps.Size(40, 40),
+                    scaledSize: new google.maps.Size(40, 40),
                     anchor: new google.maps.Point(0, 0),
                     origin: new google.maps.Point(0, 0),
                 });
@@ -362,6 +365,8 @@ function beachInfoBarConstructor(){
         }).on("mouseout", function(){
             markerArray[$(this).attr("beach-number")].setIcon({
                 url: 'assets/Images/beach-marker-original.png',
+                size: new google.maps.Size(40, 40),
+                scaledSize: new google.maps.Size(40, 40),
                 anchor: new google.maps.Point(0, 0),
                 origin: new google.maps.Point(0, 0),
             });
@@ -382,6 +387,8 @@ function beachClickHandler(markerClicked, beachObj, index){
     let markerHoverListener = markerClicked.addListener("mouseover", function(){
         markerClicked.setIcon({
             url: 'assets/Images/beach-marker-highlight.png',
+            size: new google.maps.Size(40, 40),
+            scaledSize: new google.maps.Size(40, 40),
             anchor: new google.maps.Point(0, 0),
             origin: new google.maps.Point(0, 0),
         });
@@ -390,6 +397,8 @@ function beachClickHandler(markerClicked, beachObj, index){
     let markerUnhoverListener = markerClicked.addListener("mouseout", function(){
         markerClicked.setIcon({
             url: 'assets/Images/beach-marker-original.png',
+            size: new google.maps.Size(40, 40),
+            scaledSize: new google.maps.Size(40, 40),
             anchor: new google.maps.Point(0, 0),
             origin: new google.maps.Point(0, 0),
         });
@@ -405,6 +414,8 @@ function beachClickHandler(markerClicked, beachObj, index){
         removeMarkerAnimation();
         markerClicked.setIcon({
             url: 'assets/Images/beach-marker-highlight.png',
+            size: new google.maps.Size(40, 40),
+            scaledSize: new google.maps.Size(40, 40),
             anchor: new google.maps.Point(0, 0),
             origin: new google.maps.Point(0, 0),
         });
@@ -427,6 +438,8 @@ function removeMarkerAnimation(){
     for(var i = 0; i < markerArray.length; i++){
         markerArray[i].setIcon({
             url: 'assets/Images/beach-marker-original.png',
+            size: new google.maps.Size(40, 40),
+            scaledSize: new google.maps.Size(40, 40),
             anchor: new google.maps.Point(0, 0),
             origin: new google.maps.Point(0, 0),
         });
@@ -555,16 +568,16 @@ function plot_Yelp_Data_On_Map(yelpPlace, type){
     let imgUrl;
     switch (type) {
         case "food":
-            imgUrl = "assets/Images/dish.svg"
+            imgUrl = "assets/Images/restaurant-marker.png"
             break;
         case "hotel":
-            imgUrl = "assets/Images/bed.svg"
+            imgUrl = "assets/Images/hotel-marker.png"
             break;
         case "coffee":
-            imgUrl = "assets/Images/coffee.svg"
+            imgUrl = "assets/Images/coffee-marker.png"
             break;
         case "bar":
-            imgUrl = "assets/Images/cocktail-shadow.svg"
+            imgUrl = "assets/Images/bar-marker.png"
             break;
     
         default:
