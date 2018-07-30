@@ -195,6 +195,10 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
         zoom: 13,
+        zoomControl: false,
+        scaleControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true,
         disableDefaultUI: true,
         styles: [
             {
