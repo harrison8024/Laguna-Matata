@@ -79,14 +79,15 @@ header{
 
 .store-icon-container{
     width:100%;
+    padding-left: 1%;
+    padding-right: 1%;
     display: inline-flex;
     justify-content: space-between;
     box-sizing: border-box;
 }
 
 .store-icon{
-    width:20%;
-    height:auto;
+    width:40px;
     box-sizing: border-box;
 }
 
@@ -94,11 +95,10 @@ header{
     height: 90%;
     width: 100%;
     box-sizing: border-box;
-    opacity: 0.8;
+    opacity: 1;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1%;
-    border: 1px solid black;
     position: relative;
 
 }
@@ -234,10 +234,10 @@ img {
 }
 
 .yelp_img {
-    margin:1%;
     object-fit: cover;
     width: 40%;
-    border-radius: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .yelpStars{
@@ -245,16 +245,14 @@ img {
     margin: 2%;
 }
 
-.selected{
-    background-color: #FFD3B2;
-}
-
 .yelp {
-    color: black;
+    color: #bcbcbc;
+    height: 22%;
+    background-color: #f6f7f7;
     display: inline-flex;
-    height:24%;
-    width:100%;
-    border-bottom: .2em dotted #6a6969;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .yelp-info {
@@ -263,6 +261,10 @@ img {
 
 .yelp >p, .Name_title >p, .price_title >p {
     margin: 0;
+}
+
+.selected{
+    background-color: #FFD3B2;
 }
 
 .content {
