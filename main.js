@@ -420,7 +420,7 @@ function beachClickHandler(markerClicked, beachObj, index){
             origin: new google.maps.Point(0, 0),
         });
         map.panTo(markerClicked.getPosition());
-        map.setZoom(16);
+        map.setZoom(15.5);
         markerClicked.setAnimation(google.maps.Animation.BOUNCE);
         $(".image").empty();
         $(".beachName").empty();
@@ -473,7 +473,7 @@ function yelpRatingandPictures(beachObject, type) {
             latitude: latLng.lat,
             longitude: latLng.lng,
             term: type,
-            radius: 600,
+            radius: 400,
             api_key:
                 "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
         },
