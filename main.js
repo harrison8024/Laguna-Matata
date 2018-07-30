@@ -263,7 +263,7 @@ function initMap() {
                 ]
             },
             {
-                "featureType": "poi.business",
+                "featureType": "poi",
                 "stylers": [
                     {
                         "visibility": "off"
