@@ -6,6 +6,7 @@ var storeIconOn = false;
 var markerArray = [];
 var beachesArray = [];
 var yelpMarkerArray = [];
+var beachInfoArray = [];
 var beachArray = [
     "Cameo Cove",
     "Emerald Bay",
@@ -353,8 +354,8 @@ function dropMarker() {
 
 function beachInfoBarConstructor(){
     for (let beachIndex = 0; beachIndex < beachesArray.length; beachIndex++){
-        let beachInfo = $("<div>").addClass("beach-content").attr("beach-number", beachIndex).on("mouseover", function(){
-            markerArray[$(this).attr("beach-number")].setIcon({
+        let beachInfo = $("<div>").addClass("beach-content").on("mouseover", function(){
+            markerArray[beachIndex].setIcon({
                     url: 'assets/Images/beach-marker-highlight.png',
                     size: new google.maps.Size(40, 40),
                     scaledSize: new google.maps.Size(40, 40),
@@ -363,7 +364,7 @@ function beachInfoBarConstructor(){
                 });
             $(this).addClass("selected");
         }).on("mouseout", function(){
-            markerArray[$(this).attr("beach-number")].setIcon({
+            markerArray[beachIndex].setIcon({
                 url: 'assets/Images/beach-marker-original.png',
                 size: new google.maps.Size(40, 40),
                 scaledSize: new google.maps.Size(40, 40),
@@ -372,13 +373,15 @@ function beachInfoBarConstructor(){
             });
             $(this).removeClass("selected");
         }).on("click", function(){
-            google.maps.event.trigger(markerArray[$(this).attr("beach-number")], "click");
+            beachInfo.off("mouseout");
+            google.maps.event.trigger(markerArray[beachIndex], "click");
             $(".beach-info").addClass("hidden");
         });
         let beachImg = $(`<img src = "${beachesArray[beachIndex].picture}">`);
         let beachName = $("<p>").text(beachesArray[beachIndex].name);
         beachInfo.append(beachImg, beachName);
         $(".beach-info").append(beachInfo);
+        beachInfoArray.push(beachInfo);
     }
 }
 
@@ -634,6 +637,19 @@ function resetMap(){
     removeMarkerAnimation();
     map.setCenter({lat: 33.522759, lng: -117.763314});
     map.setZoom(13);
+    for(let beachIndex = 0; beachIndex < beachInfoArray.length; beachIndex++){
+        beachInfoArray[beachIndex].on("mouseout", function(){
+            markerArray[beachIndex].setIcon({
+                url: 'assets/Images/beach-marker-original.png',
+                size: new google.maps.Size(40, 40),
+                scaledSize: new google.maps.Size(40, 40),
+                anchor: new google.maps.Point(0, 0),
+                origin: new google.maps.Point(0, 0),
+            }); 
+            $(this).removeClass("selected");
+        });
+    }
+    $(".selected").removeClass("selected")
     $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
     $(".info-content").empty();
