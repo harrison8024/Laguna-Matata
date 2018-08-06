@@ -53,10 +53,14 @@ header{
 .beach-title{
     color: #7b7b7c;
     font-size: 4.5vh;
+    font-family: "Lato", sans-serif;
+}
+
+.beach-title-container{
+    position: relative;
     padding-left: 2%;
     height:10%;
     width:100%;
-    font-family: "Lato", sans-serif;
 }
 
 .beach-info{
@@ -91,6 +95,13 @@ header{
     font-family: "Lato", sans-serif;
     font-weight: bold;
     margin: 5%;
+}
+
+.right-arrow{
+    position: absolute;
+    height: 35%;
+    right: 1%;
+    margin: 3.5%;
 }
 
 .store-icon-container{
@@ -144,40 +155,30 @@ header{
     position: absolute;
     height:50px;
     width:50px;
-    top:1%;
+    bottom:1%;
     left:1%;
     z-index: 1
 }
 
-.picture {
+.beach-info-box {
     height: 30%;
     width: 30%;
     position: absolute;
-    bottom: 30%;
-    left: 1%;
 }
 
 img {
     max-width: 100%;
 }
 
-.image {
-    width: 100%;
-    margin: 2%;
-    object-fit: contain;
-}
-
 .reviewTextBox {
-    background-color: black ;
+    background-color: white ;
     opacity: 0.8;
     max-height: 150px;
-    margin: 2%;
-    margin-top: 5%;
     overflow: auto;
     overflow-x: hidden;
     padding: 3%;
     font-weight: 800;
-    color: floralwhite;
+    color: #7b7b7c;
 
 }
 
@@ -261,8 +262,8 @@ img {
 }
 
 .yelpStars{
-    width: 80%;
-    margin: 2%;
+    width: 65%;
+    margin-top: 3%;
 }
 
 .yelp {
@@ -283,6 +284,10 @@ img {
 
 .yelp-info > p {
     font-family: "Lato", sans-serif;
+}
+
+.yelp-info p:nth-child(3){
+    font-size: 0.9em;
 }
 
 .selected{

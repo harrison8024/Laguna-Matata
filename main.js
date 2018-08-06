@@ -428,7 +428,7 @@ function beachClickHandler(markerClicked, beachObj, index){
         $(".image").empty();
         $(".beachName").empty();
         $(".reviewRating").empty();
-        displayImage(beachObj);
+        // displayImage(beachObj);
         displayComment(beachObj);
         removeMarkers(yelpMarkerArray);
         $(".food-icon").addClass("highlight");
@@ -462,8 +462,10 @@ function displayComment(clickedObj){
     }, function(place) {
         $('.reviewText').text(place.reviews[0].text);
         $('.reviewRating').text(place.reviews[0].rating + ' Stars');
-        $('.beachName').text(clickedObj.name);
+        // $('.beachName').text(clickedObj.name);
+        $('.beach-title').text(clickedObj.name);
     });
+    $(".beach-info-box").removeClass("hidden");
 }
 
 function yelpRatingandPictures(beachObject, type) {
