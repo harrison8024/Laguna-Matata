@@ -65,7 +65,7 @@ header{
 
 .beach-title-container{
     position: relative;
-    padding-left: 2%;
+    padding-left: 1%;
     height:10%;
     width:100%;
 }
@@ -168,12 +168,19 @@ header{
 }
 
 .back{
+    font-family: "Lato", sans-serif;
     position: absolute;
-    height:50px;
-    width:50px;
-    bottom:1%;
-    left:1%;
-    z-index: 1
+    margin-top: 0.7%;
+    margin-left: 1.5%;
+    padding-top: 0.5%;
+    text-align: center;
+    height: 30px;
+    width: 80px;
+    left: 0;
+    border-radius: 50px;
+    background-color: grey;
+    color: white;
+    box-sizing: border-box;
 }
 
 .beach-info-box {
