@@ -430,11 +430,21 @@ function beachClickHandler(markerClicked, beachObj, index){
         $(".reviewRating").empty();
         // displayImage(beachObj);
         displayComment(beachObj);
+        addBeachInfoButton();
         removeMarkers(yelpMarkerArray);
         $(".food-icon").addClass("highlight");
         $(".beach-info").addClass("hidden");
         addResetButton();
     });
+}
+
+function addBeachInfoButton(){
+    let infoButton = $("<div>").addClass("info-button left-arrow");
+    infoButton.on("click", function(){
+        $(".beach-info-box").toggle();
+        $(".info-button").toggleClass("left-arrow");
+    })
+    $(".beach-title-container").append(infoButton);
 }
 
 function removeMarkerAnimation(){
