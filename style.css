@@ -55,8 +55,11 @@ header{
 }
 
 .beach-title{
+    vertical-align: top;
+    width: 80%;
+    display: inline-block;
     color: #7b7b7c;
-    font-size: 4.5vh;
+    font-size: 3vw;
     font-family: "Lato", sans-serif;
 }
 
@@ -102,14 +105,14 @@ header{
 }
 
 .info-button{
-    position: absolute;
-    height: 40px;
-    width: 40px;
-    top: 0;
-    right: 0;
+    margin: 3%;
+    height: 100%;
+    width: 14%;
     background-image: url(./assets/Images/right-arrow.png);
     background-repeat: no-repeat;
-    background-size: 40px 40px;
+    background-size: 30% auto;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
 .left-arrow{
