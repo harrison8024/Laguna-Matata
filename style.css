@@ -103,14 +103,13 @@ header{
     width: 40px;
     top: 0;
     right: 0;
-    margin-top: 2.5%;
     background-image: url(./assets/Images/right-arrow.png);
     background-repeat: no-repeat;
+    background-size: 40px 40px;
 }
 
 .left-arrow{
     background-image: url(./assets/Images/left-arrow.png);
-    background-repeat: no-repeat;
 }
 
 .store-icon-container{

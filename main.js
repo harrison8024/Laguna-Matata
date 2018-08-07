@@ -641,6 +641,7 @@ function storeIconEventListener(){
 function addResetButton(){
    $(".back").removeClass("hidden");
    $(".back").on("click", resetMap);
+   $(".text-title").on("click", resetMap);
 }
 
 function resetMap(){
@@ -666,10 +667,13 @@ function resetMap(){
     $(".back").addClass("hidden");
     $(".info-content").empty();
     $(".info-content").addClass("hidden");
+    $(".info-button").remove();
     $(".food").removeClass("hidden");
     $(".store-icon").removeClass("highlight");
     $(".image").empty();
     $(".beachName").empty();
     $(".reviewRating").empty();
-    $(".reviewText").empty().text("Select an icon to get information on one of Laguna Beach's several hard to find beaches and coves.");
+    $(".beach-info-box").addClass("hidden");
+    $(".reviewText").empty();
+    $(".text-title").off("click");
 }
