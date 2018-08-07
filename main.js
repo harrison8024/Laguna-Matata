@@ -676,4 +676,5 @@ function resetMap(){
     $(".beach-info-box").addClass("hidden");
     $(".reviewText").empty();
     $(".text-title").off("click");
+    $(".beach-title").text("Laguna Beach");
 }
