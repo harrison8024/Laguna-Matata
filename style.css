@@ -18,6 +18,10 @@ header{
     box-sizing: border-box; 
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .text-title{
     font-weight: 800;
     font-size: 7vh;
@@ -195,9 +199,13 @@ img {
     text-align: center;
 }
 
-.reviewText .reviewRating{
+.reviewRating{
+    margin-bottom: 1%;
+}
+
+.reviewText, .reviewRating{
+    font-family: "Lato", sans-serif;
     font-size: 100%;
-    text-align: center;
 }
 
 .weather {

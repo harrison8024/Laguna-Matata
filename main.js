@@ -354,7 +354,7 @@ function dropMarker() {
 
 function beachInfoBarConstructor(){
     for (let beachIndex = 0; beachIndex < beachesArray.length; beachIndex++){
-        let beachInfo = $("<div>").addClass("beach-content").on("mouseover", function(){
+        let beachInfo = $("<div>").addClass("beach-content pointer").on("mouseover", function(){
             markerArray[beachIndex].setIcon({
                     url: 'assets/Images/beach-marker-highlight.png',
                     size: new google.maps.Size(40, 40),
@@ -439,7 +439,7 @@ function beachClickHandler(markerClicked, beachObj, index){
 }
 
 function addBeachInfoButton(){
-    let infoButton = $("<div>").addClass("info-button left-arrow");
+    let infoButton = $("<div>").addClass("info-button pointer left-arrow");
     infoButton.on("click", function(){
         $(".beach-info-box").toggle();
         $(".info-button").toggleClass("left-arrow");
@@ -548,7 +548,7 @@ function append_Yelp_Data_To_Dom( storeObject, type, storeIndex){
     let linkButton = $("<a>").attr({"href":storeObject.businesses_url, "target": "_blank"}).text("visit");
     infoDiv.append(name, yelp_star, reviewCount, linkButton);
     let yelp_data_content = $("<div>");
-    yelp_data_content.addClass('yelp').append(image, infoDiv);
+    yelp_data_content.addClass('yelp pointer').append(image, infoDiv);
     $("." + type).append(yelp_data_content);
     let yelpMarker = plot_Yelp_Data_On_Map(storeObject, type);
     google.maps.event.addListener(yelpMarker, "click", function(){
