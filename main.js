@@ -352,9 +352,14 @@ function dropMarker() {
     }
 }
 
+var lastBeachClicked = null;
+
 function beachInfoBarConstructor(){
     for (let beachIndex = 0; beachIndex < beachesArray.length; beachIndex++){
         let beachInfo = $("<div>").addClass("beach-content pointer").on("mouseover", function(){
+            if(lastBeachClicked === beachIndex){
+                return;
+            }
             markerArray[beachIndex].setIcon({
                     url: 'assets/Images/beach-marker-highlight.png',
                     size: new google.maps.Size(40, 40),
@@ -364,6 +369,9 @@ function beachInfoBarConstructor(){
                 });
             $(this).addClass("selected");
         }).on("mouseout", function(){
+            if(lastBeachClicked === beachIndex){
+                return;
+            }
             markerArray[beachIndex].setIcon({
                 url: 'assets/Images/beach-marker-original.png',
                 size: new google.maps.Size(40, 40),
@@ -373,7 +381,10 @@ function beachInfoBarConstructor(){
             });
             $(this).removeClass("selected");
         }).on("click", function(){
-            beachInfo.off("mouseout");
+            if(lastBeachClicked === beachIndex){
+                return;
+            }
+            // beachInfo.off("mouseout");
             google.maps.event.trigger(markerArray[beachIndex], "click");
             $(".beach-info").addClass("hidden");
         });
@@ -387,7 +398,10 @@ function beachInfoBarConstructor(){
 
 function beachClickHandler(markerClicked, beachObj, index){
     var storeType = ["bar", "coffee", "food", "hotel"];
-    let markerHoverListener = markerClicked.addListener("mouseover", function(){
+    let = markerHoverListener = markerClicked.addListener("mouseover", function(){
+        if(lastBeachClicked === index){
+            return;
+        }
         markerClicked.setIcon({
             url: 'assets/Images/beach-marker-highlight.png',
             size: new google.maps.Size(40, 40),
@@ -397,7 +411,10 @@ function beachClickHandler(markerClicked, beachObj, index){
         });
         $(`div[beach-number=${index}]`).addClass("selected");
     });
-    let markerUnhoverListener = markerClicked.addListener("mouseout", function(){
+    let = markerUnhoverListener = markerClicked.addListener("mouseout", function(){
+        if(lastBeachClicked === index){
+            return;
+        }
         markerClicked.setIcon({
             url: 'assets/Images/beach-marker-original.png',
             size: new google.maps.Size(40, 40),
@@ -407,9 +424,13 @@ function beachClickHandler(markerClicked, beachObj, index){
         });
         $(`div[beach-number=${index}]`).removeClass("selected");
     });
-    markerClicked.addListener('click', function() {
-        google.maps.event.removeListener(markerHoverListener);
-        google.maps.event.removeListener(markerUnhoverListener);
+    let markerClickListener = markerClicked.addListener('click', function() {
+        if(lastBeachClicked === index){
+            return;
+        }
+        lastBeachClicked = index;
+        // google.maps.event.removeListener(markerHoverListener);
+        // google.maps.event.removeListener(markerUnhoverListener);
         $(".info-content").empty();
         for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
              yelpRatingandPictures(beachObj, storeType[typeIndex]);
@@ -428,7 +449,6 @@ function beachClickHandler(markerClicked, beachObj, index){
         $(".image").empty();
         $(".beachName").empty();
         $(".reviewRating").empty();
-        // displayImage(beachObj);
         displayComment(beachObj);
         addBeachInfoButton();
         removeMarkers(yelpMarkerArray);
@@ -650,18 +670,7 @@ function resetMap(){
     removeMarkerAnimation();
     map.setCenter({lat: 33.522759, lng: -117.763314});
     map.setZoom(13);
-    for(let beachIndex = 0; beachIndex < beachInfoArray.length; beachIndex++){
-        beachInfoArray[beachIndex].on("mouseout", function(){
-            markerArray[beachIndex].setIcon({
-                url: 'assets/Images/beach-marker-original.png',
-                size: new google.maps.Size(40, 40),
-                scaledSize: new google.maps.Size(40, 40),
-                anchor: new google.maps.Point(0, 0),
-                origin: new google.maps.Point(0, 0),
-            }); 
-            $(this).removeClass("selected");
-        });
-    }
+    lastBeachClicked = null;
     $(".selected").removeClass("selected")
     $(".beach-info").removeClass("hidden");
     $(".back").addClass("hidden");
