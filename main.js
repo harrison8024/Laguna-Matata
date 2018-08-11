@@ -147,8 +147,7 @@ function convertTimeToPacificDaylight(time){
 function appendWeatherInfoToDom (obj){
     let currentTemp = $("<h1>").text(obj.currentTemp)
     let currentWeatherDiv = $("<div>").addClass("weather-temp");
-    let currentWeatherIcon = $("<canvas>").attr({"id": "weather-icon","height": 50, "width": 50});
-    currentWeatherDiv.append(currentWeatherIcon);
+    let currentWeatherIcon = $("<canvas>").attr({"id": "weather-icon","height": 100, "width": 100});
     currentWeatherDiv.append(currentTemp);
     let feelsLikeTemp =  $("<p>").text(obj.feelsLikeTemp);
     let humidity =  $("<p>").text(obj.humidity);
@@ -157,6 +156,7 @@ function appendWeatherInfoToDom (obj){
     let dailyWeatherSummary = $("<p>").text(obj.dailyWeatherSummary);
     let sunriseTime = $("<p>").text(obj.sunriseTime);
     let sunsetTime = $("<p>").text(obj.sunsetTime);
+    $(".weather").append(currentWeatherIcon);
     $(".weather").append(currentWeatherDiv);
     chooseWeatherIcon(obj.currentWeatherIcon);
     $(".marquee-inner-1").append(feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, sunriseTime, sunsetTime, dailyWeatherSummary);
