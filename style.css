@@ -156,7 +156,6 @@ header{
 
 #wrapper {
     position: relative;
-    height: 100%;
     width: 69%;
     box-sizing: border-box;
 }
@@ -294,7 +293,9 @@ img {
 }
 
 .yelp {
+    position: relative;
     color: #7b7b7c;
+    width: 97%;
     height: 25%;
     background-color: #f6f7f7;
     display: inline-flex;
@@ -344,22 +345,89 @@ img {
 }
 
  @media only screen and (max-width: 600px) {
-     #map-container{
-         height: 30%;
-         width: 80%;
-     }
-     .info-container-wrapper{
-         top: 300px;
-     }
+    .header-container{
+        position: relative;
+    }
 
+    .text-title {
+        width: 50%;
+        font-size: 4vh;
+    }
+
+    .text-title span:nth-child(2){
+        margin-left: 40px;
+    }
+
+    .logo-text {
+        width: 60%;
+        text-align: left;
+    }
+
+    .logo-text h3{
+        position: absolute;
+        font-size: 0.8rem;
+        width: 100%;
+        bottom: 0;
+        padding: 2%;
+        text-align: center;
+        left: -1%;
+    }
+
+    .weather{
+        width: 147px;
+    }
+
+    .marquee-content{
+        width: 1000%;  
+    }
+
+    @keyframes marquee {
+        0% { left: 0; }
+        100% { left: -500%; }
+    }
+
+    .info-container-wrapper{
+        position: absolute;
+        width:100%;
+        height:46%;
+        top:53%;
+    }
+
+    .info-container{
+        margin-top: 1%;
+    }
+
+    .beach-title{
+        font-size: 5vw;
+    }
+
+    .beach-content{
+        height: 31%;
+        margin-bottom: 2%;
+    }
+
+    #wrapper {
+        width: 100%;
+        height: 40%;
+    }
+
+    .store-icon-container{
+        justify-content: space-around;
+        height: 14%;
+    }
+
+    .info-button{
+        margin-top: 1%;
+        background-size: 35% auto;
+    }
+    .yelp{
+        margin-bottom: 1%;
+        height: 33%;
+    }
+    
+    .yelp-info > a {
+        position: absolute;
+        right: 2%;
+        bottom: 5%;
+    }
  }
-
-/* @media only screen and (min-width: 600px) {
-    .current > p, .sunrise-sunset > p, .high-low > p, .weather > p, .reviewText {
-        font-size: 75%;
-        margin: 2%;
-    }
-    .weather > p:first-child {
-        font-size: 300%;
-    }
-} */
