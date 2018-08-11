@@ -40,6 +40,7 @@ header{
 }
 
 .header-container{
+    position: relative;
     display: inline-flex;
     width: 100%;
     height: 100%;
@@ -227,14 +228,24 @@ img {
 }
 
 .weather {
-    width:200px;
+    display: inline-flex;
+    height: 79%;
+    width: 165px;
     padding: 1%;
     position: absolute;
+    top: 1%;
     right: 0;
     box-sizing: border-box;
 }
 
+#weather-icon{
+    width: 40%;
+}
+
 .weather-temp{
+    padding-left: 5%;
+    padding-top: 6%;
+    font-size: 1.6rem;
     color: white;
     width: 100%;
     display: inline-flex;
