@@ -245,7 +245,7 @@ img {
 .weather-temp{
     padding-left: 5%;
     padding-top: 6%;
-    font-size: 1.6rem;
+    font-size: 3rem;
     color: white;
     width: 100%;
     display: inline-flex;
@@ -393,7 +393,16 @@ img {
     }
 
     .weather{
-        width: 147px;
+        width: 100px;
+    }
+
+    #weather-icon{
+        width: 40%;
+        height: 70%;
+    }
+
+    .weather-temp{
+        font-size: 2.2rem;
     }
 
     .marquee-content{

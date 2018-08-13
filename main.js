@@ -145,7 +145,7 @@ function convertTimeToPacificDaylight(time){
 }
 
 function appendWeatherInfoToDom (obj){
-    let currentTemp = $("<h1>").text(obj.currentTemp)
+    let currentTemp = $("<span>").text(obj.currentTemp)
     let currentWeatherDiv = $("<div>").addClass("weather-temp");
     let currentWeatherIcon = $("<canvas>").attr({"id": "weather-icon","height": 100, "width": 100});
     currentWeatherDiv.append(currentTemp);
