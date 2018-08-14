@@ -30,7 +30,7 @@ header{
 .text-title{
     font-weight: 800;
     font-size: 7vh;
-    letter-spacing: 4px;
+    letter-spacing: 15px;
 }
 
 .logo-text > h3{
@@ -230,7 +230,7 @@ img {
 .weather {
     display: inline-flex;
     height: 79%;
-    width: 165px;
+    width: 150px;
     padding: 1%;
     position: absolute;
     top: 1%;
@@ -239,12 +239,13 @@ img {
 }
 
 #weather-icon{
-    width: 40%;
+    width: 50px;
+    height: 50px;
 }
 
 .weather-temp{
-    padding-left: 5%;
-    padding-top: 6%;
+    padding-left: 4px;
+    padding-top: 7px;
     font-size: 3rem;
     color: white;
     width: 100%;
@@ -363,7 +364,7 @@ img {
     border-radius: 10px;
 }
 
- @media only screen and (max-width: 600px) {
+ @media only screen and (max-width: 700px) {
     .header-container{
         position: relative;
     }
@@ -393,12 +394,12 @@ img {
     }
 
     .weather{
-        width: 100px;
+        width: 115px;
     }
 
     #weather-icon{
-        width: 40%;
-        height: 70%;
+        width: 40px;
+        height: 40px;
     }
 
     .weather-temp{
