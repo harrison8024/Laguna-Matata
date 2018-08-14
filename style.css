@@ -66,15 +66,16 @@ header{
     width: 84%;
     display: inline-block;
     color: #7b7b7c;
-    font-size: 3vw;
+    font-size: 1.6rem;
     font-family: "Lato", sans-serif;
 }
 
 .beach-title-container{
     position: relative;
     padding-left: 1%;
-    height:10%;
-    width:100%;
+    height:12%;
+    width:98%;
+    box-sizing: border-box;
 }
 
 .beach-info{
@@ -144,7 +145,7 @@ header{
 
 .info-container {
     margin-top: 3%;
-    height: 80%;
+    height: 78%;
     width: 100%;
     box-sizing: border-box;
     opacity: 1;
@@ -345,7 +346,7 @@ img {
 .content {
     background-color: #EDF4FA;
     height: 81vh;
-    width: 100vw;
+    width: 100%;
     display: inline-flex;
     justify-content: space-between;
     padding: 1%;
@@ -386,11 +387,11 @@ img {
     .logo-text h3{
         position: absolute;
         font-size: 0.8rem;
-        width: 100%;
+        width: 96%;
         bottom: 0;
         padding: 2%;
         text-align: center;
-        left: -1%;
+        box-sizing: border-box;
     }
 
     .weather{
@@ -417,17 +418,14 @@ img {
 
     .info-container-wrapper{
         position: absolute;
-        width:100%;
+        width:99%;
         height:46%;
         top:53%;
     }
 
     .info-container{
         margin-top: 1%;
-    }
-
-    .beach-title{
-        font-size: 5vw;
+        height:74%;
     }
 
     .beach-content{
@@ -446,8 +444,8 @@ img {
     }
 
     .info-button{
-        margin-top: 1%;
-        background-size: 35% auto;
+        margin-top: 2%;
+        background-size: 10px;
     }
     .yelp{
         margin-bottom: 1%;
