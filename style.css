@@ -309,7 +309,7 @@ img {
 }
 
 .yelpStars{
-    width: 65%;
+    width: 50%;
     margin-top: 3%;
 }
 
@@ -327,15 +327,16 @@ img {
 }
 
 .yelp-info {
+    width:100%;
     text-align: left;
     padding:1%;
 }
 
-.yelp-info > p {
+.yelp-info > p, .yelp-info > a {
     font-family: "Lato", sans-serif;
 }
 
-.yelp-info p:nth-child(3){
+.yelp-info p:nth-child(3), .yelp-info > a{
     font-size: 0.9em;
 }
 
